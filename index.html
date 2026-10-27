@@ -52,6 +52,7 @@ th{background:var(--paper);font-weight:700}
 button,select,input{font:inherit;color:inherit}
 :focus-visible{outline:3px solid var(--u2);outline-offset:2px;border-radius:6px}
 
+/* ---------- hero ---------- */
 .hero{padding:34px 0 22px}
 .hero h1{font-size:clamp(30px,5vw,46px);letter-spacing:-.02em;margin-bottom:8px}
 .hero .lede{color:var(--soft);font-size:18px;margin:0 0 18px}
@@ -77,11 +78,13 @@ button,select,input{font:inherit;color:inherit}
 .toggle[aria-pressed="true"]{background:var(--u2);color:var(--surface)}
 .ionnote{font-size:14.5px;color:var(--soft);margin-top:8px;min-height:22px}
 
+/* ---------- nav ---------- */
 nav.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--paper);border-bottom:1px solid var(--line)}
 nav.tabs .wrap{display:flex;gap:4px;overflow-x:auto;padding-top:8px;padding-bottom:8px}
 nav.tabs a{white-space:nowrap;text-decoration:none;padding:7px 13px;border-radius:9px;font-weight:600;font-size:15px;color:var(--soft)}
 nav.tabs a:hover{background:var(--surface);color:var(--ink)}
 
+/* ---------- units & topics ---------- */
 .unit{padding:34px 0 10px}
 .unit-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:6px}
 .unit-head p{margin:0;color:var(--soft)}
@@ -100,12 +103,14 @@ nav.tabs a:hover{background:var(--surface);color:var(--ink)}
 .series .arrow{background:none;color:var(--soft);font-weight:600;padding:6px 2px}
 ol.steps{padding-left:22px} ol.steps li{margin-bottom:6px}
 
+/* misconceptions */
 .myths{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px;margin-top:10px}
 .myth{border:1px solid var(--line);background:var(--surface);border-radius:14px;padding:14px;text-align:left;cursor:pointer;width:100%}
 .myth .q{font-weight:700} .myth .a{display:none;margin-top:8px;color:var(--good);font-size:15.5px}
 .myth .hint{font-size:13px;color:var(--soft);margin-top:8px}
 .myth[aria-expanded="true"] .a{display:block} .myth[aria-expanded="true"] .hint{display:none}
 
+/* tools */
 .tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin-top:14px}
 .tool{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px}
 .tool h3{margin-bottom:4px}
@@ -116,6 +121,7 @@ select{background:var(--surface);border:1.5px solid var(--line);border-radius:10
 .out .big{font-size:28px;font-weight:800}
 .out.ok{background:var(--good-soft)} .out.no{background:var(--bad-soft)} .out.warn{background:var(--warn-soft)}
 
+/* quiz */
 .quiz{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px;margin-top:14px}
 .qhead{display:flex;justify-content:space-between;color:var(--soft);font-size:14.5px;margin-bottom:8px}
 .bar{height:7px;border-radius:99px;background:var(--u2-soft);overflow:hidden;margin-bottom:18px}
@@ -136,6 +142,7 @@ select{background:var(--surface);border:1.5px solid var(--line);border-radius:10
 .missed{text-align:left;margin-top:14px;font-size:15px}
 .missed li{margin-bottom:6px}
 
+/* exam questions */
 .xq{border-top:1px solid var(--line);padding:12px 0}
 .xq .qq{font-weight:600}
 .xq .mk{color:var(--soft);font-weight:500}
@@ -143,6 +150,49 @@ select{background:var(--surface);border:1.5px solid var(--line);border-radius:10
 .ans{display:none;margin-top:6px;color:var(--good);font-weight:600}
 .ans.show{display:block}
 footer{color:var(--soft);font-size:14px;padding:40px 0 60px}
+
+/* ---------- practice paper ---------- */
+.fig{width:100%;max-width:560px;display:block;margin:12px auto;background:var(--surface);border:1px solid var(--line);border-radius:14px}
+.figtxt{font-family:var(--font);fill:var(--ink)}
+.pq-card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px 18px 8px;margin-top:16px}
+.pq-head{display:flex;justify-content:space-between;gap:10px;align-items:baseline;flex-wrap:wrap;margin-bottom:6px}
+.pq-head h3{margin:0}
+.chip{font-size:13px;font-weight:700;padding:3px 9px;border-radius:8px;white-space:nowrap}
+.chip.u2{background:var(--u2-soft);color:var(--u2)} .chip.u5{background:var(--u5-soft);color:var(--u5)}
+.pq-intro p{margin:6px 0}
+.part{border-top:1px dashed var(--line);padding:12px 0}
+.stem{display:flex;gap:12px;justify-content:space-between;align-items:flex-start}
+.stem .mk{white-space:nowrap;color:var(--soft);font-weight:700}
+.pin{margin:10px 0 4px}
+.inline select,.pin select{display:inline-block;width:auto;max-width:100%;flex:none;padding:5px 8px;margin:2px 3px}
+.ticks label{display:flex;gap:9px;align-items:center;margin:5px 0;cursor:pointer}
+.ticks input{width:18px;height:18px;accent-color:var(--u2)}
+.num input{border:1.5px solid var(--line);border-radius:10px;padding:8px 10px;width:130px;background:var(--surface);color:var(--ink)}
+.num span{margin-left:6px;color:var(--soft)}
+textarea{width:100%;min-height:78px;border:1.5px solid var(--line);border-radius:10px;padding:10px;background:var(--surface);color:var(--ink);font:inherit;font-size:16px}
+.olist{list-style:none;padding:0;margin:0}
+.olist li{display:flex;gap:8px;align-items:center;border:1.5px solid var(--line);border-radius:10px;padding:8px 10px;margin:6px 0;background:var(--surface)}
+.olist li span{flex:1}
+.olist li b{color:var(--soft);min-width:18px}
+.olist button{border:1px solid var(--line);background:var(--paper);border-radius:8px;width:36px;height:32px;cursor:pointer;color:var(--ink)}
+.pcheck{border:none;border-radius:10px;padding:8px 15px;font-weight:700;background:var(--u2);color:#fff;cursor:pointer;margin-top:6px}
+.pcheck.alt{background:transparent;color:var(--u2);border:1.5px solid var(--u2)}
+.pfb{margin-top:8px;font-size:15.5px;border-radius:10px;padding:9px 12px;display:none}
+.pfb.show{display:block}
+.pfb.good{background:var(--good-soft)} .pfb.half{background:var(--warn-soft)} .pfb.bad{background:var(--bad-soft)} .pfb.info{background:var(--paper)}
+.pfb ul{margin:6px 0 0;padding-left:20px}
+.award{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;align-items:center;font-size:15px}
+.award button{min-width:42px;border:1.5px solid var(--line);background:var(--surface);border-radius:9px;padding:6px 10px;font-weight:700;cursor:pointer;color:var(--ink)}
+.award button[aria-pressed="true"]{background:var(--u2);color:#fff;border-color:var(--u2)}
+.paperbar{position:sticky;top:calc(52px + env(safe-area-inset-top,0px));z-index:10;background:var(--paper);padding:10px 0;font-weight:700;display:flex;gap:16px;flex-wrap:wrap;border-bottom:1px solid var(--line)}
+.paperbar span{color:var(--soft);font-weight:600}
+.paperend{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.presult{margin-top:16px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px}
+.qmenu{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.qmenu button{text-align:left;border:1.5px solid var(--line);background:var(--surface);border-radius:14px;padding:14px;cursor:pointer;color:var(--ink)}
+.qmenu button b{display:block;font-size:17px}
+.qmenu button span{color:var(--soft);font-size:14.5px}
+.qmenu button:hover{border-color:var(--u2)}
 </style>
 </head>
 <body>
@@ -175,13 +225,15 @@ footer{color:var(--soft);font-size:14px;padding:40px 0 60px}
     <a href="#unit2">Unit 2</a>
     <a href="#unit5">Unit 5</a>
     <a href="#tools">Practice tools</a>
-    <a href="#quiz">Quiz</a>
-    <a href="#exam">Exam questions</a>
+    <a href="#quiz">Quick quiz</a>
+    <a href="#paper">Practice paper</a>
+    <a href="#exam">Self-check</a>
   </div>
 </nav>
 
 <main class="wrap">
 
+<!-- ======================= UNIT 2 ======================= -->
 <section class="unit u2" id="unit2">
   <div class="unit-head"><h2>Unit 2: Atoms, bonding and structures</h2><p>Test questions 1–6</p></div>
 
@@ -325,6 +377,7 @@ footer{color:var(--soft);font-size:14px;padding:40px 0 60px}
   </div>
 </section>
 
+<!-- ======================= UNIT 5 ======================= -->
 <section class="unit u5" id="unit5">
   <div class="unit-head"><h2>Unit 5: Reactivity, salts and conservation</h2><p>Test questions 7–10</p></div>
 
@@ -418,6 +471,7 @@ footer{color:var(--soft);font-size:14px;padding:40px 0 60px}
   </div>
 </section>
 
+<!-- ======================= TOOLS ======================= -->
 <section class="unit" id="tools">
   <div class="unit-head"><h2>Practice tools</h2><p>Try a combination, predict the answer, then check.</p></div>
   <div class="tools">
@@ -442,13 +496,25 @@ footer{color:var(--soft);font-size:14px;padding:40px 0 60px}
   </div>
 </section>
 
+<!-- ======================= QUIZ ======================= -->
 <section class="unit" id="quiz">
-  <div class="unit-head"><h2>Quick quiz</h2><p>28 questions, marked as you go.</p></div>
+  <div class="unit-head"><h2>Quick quiz</h2><p>52 questions, marked as you go. Pick a set to start.</p></div>
   <div class="quiz" id="quizBox"></div>
 </section>
 
+<!-- ======================= PRACTICE PAPER ======================= -->
+<section class="unit" id="paper">
+  <div class="unit-head"><h2>Practice paper</h2><p>Checkpoint-style questions on Units 2 and 5. Allow about 60 minutes.</p></div>
+  <p>Answer each part, then press <b>Check answer</b>. For written answers, write first, then open the mark scheme and give yourself the marks you earned. Look at the command word: <b>state</b> = a short fact, <b>describe</b> = say what happens, <b>explain</b> = say why, <b>predict</b> = use the pattern in the data.</p>
+  <div class="paperbar" id="paperBar"></div>
+  <div id="paperBox"></div>
+  <div class="paperend"><button class="btn" id="paperFinish">See my results</button><button class="btn ghost" id="paperReset">Start the paper again</button></div>
+  <div id="paperResult"></div>
+</section>
+
+<!-- ======================= EXAM ======================= -->
 <section class="unit" id="exam">
-  <div class="unit-head"><h2>Exam-style questions</h2><p>Write your answer first, then reveal the mark scheme.</p></div>
+  <div class="unit-head"><h2>Self-check from the revision guides</h2><p>Write your answer first, then reveal the mark scheme.</p></div>
   <h3 style="color:var(--u2);margin-top:14px">Unit 2 self-check (16 marks)</h3>
   <div id="x2"></div>
   <h3 style="color:var(--u5);margin-top:26px">Unit 5 self-check (14 marks)</h3>
@@ -462,8 +528,9 @@ footer{color:var(--soft);font-size:14px;padding:40px 0 60px}
 (function(){
 "use strict";
 var $=function(id){return document.getElementById(id);};
-function esc(s){return String(s).replace(/[&<>\"]/g,function(c){return {"&":"&amp;","<":"&lt;", ">":"&gt;","\"":"&quot;"}[c];});}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c];});}
 
+/* =================== ATOM BUILDER =================== */
 var EL=[
  [1,"H","Hydrogen",1,null,"h"],[2,"He","Helium",4,0,"noble"],[3,"Li","Lithium",7,1,"metal"],[4,"Be","Beryllium",9,2,"metal"],
  [5,"B","Boron",11,3,"cov"],[6,"C","Carbon",12,4,"cov"],[7,"N","Nitrogen",14,5,"non"],[8,"O","Oxygen",16,6,"non"],
@@ -515,6 +582,7 @@ EL.forEach(function(e){var b=document.createElement("button");b.className="tile"
 $("ionBtn").onclick=function(){showIon=!showIon;drawAtom();};
 drawAtom();
 
+/* =================== MISCONCEPTIONS =================== */
 var MYTHS={u2:[
  ["Losing electrons makes an atom negative.","Electrons are negative. Losing them leaves more protons than electrons, so the ion is positive (Na⁺ has 11 protons and 10 electrons)."],
  ["NaCl is a small molecule, like HCl.","NaCl is a giant ionic lattice. The formula only shows the 1 : 1 ratio of Na⁺ to Cl⁻ ions."],
@@ -538,6 +606,7 @@ document.querySelectorAll("[data-myths]").forEach(function(box){
     box.appendChild(b);});
 });
 
+/* =================== IONIC FORMULA BUILDER =================== */
 var CAT=[["Li","lithium",1],["Na","sodium",1],["K","potassium",1],["Mg","magnesium",2],["Ca","calcium",2],["Al","aluminium",3]];
 var ANI=[["F","fluoride",1],["Cl","chloride",1],["Br","bromide",1],["I","iodide",1],["O","oxide",2],["S","sulfide",2],["N","nitride",3]];
 function fill(sel,arr,fmt){arr.forEach(function(a,i){var o=document.createElement("option");o.value=i;o.innerHTML=fmt(a);sel.appendChild(o);});}
@@ -554,6 +623,7 @@ function ionic(){
 }
 $("cat").onchange=ionic;$("ani").onchange=ionic;ionic();
 
+/* =================== DISPLACEMENT =================== */
 var SER=["potassium","sodium","calcium","magnesium","zinc","iron","copper","silver","gold"];
 var ADD=["magnesium","zinc","iron","copper","silver","gold","sodium"];
 var SALTS=[["magnesium","sulfate"],["zinc","sulfate"],["iron","sulfate"],["copper","sulfate"],["magnesium","nitrate"],["zinc","nitrate"],["copper","nitrate"],["silver","nitrate"]];
@@ -579,6 +649,7 @@ function displace(){
 }
 $("dMetal").onchange=displace;$("dSalt").onchange=displace;displace();
 
+/* =================== SALT MAKER =================== */
 var ACIDS=[["hydrochloric acid","chloride"],["sulfuric acid","sulfate"],["nitric acid","nitrate"]];
 var TYPES=["metal","metal oxide","metal hydroxide","metal carbonate"];
 var MET=["magnesium","zinc","iron","copper","calcium","sodium"];
@@ -612,6 +683,7 @@ function salt(){
 }
 ["sAcid","sType","sMetal"].forEach(function(id){$(id).onchange=salt;});salt();
 
+/* =================== QUIZ =================== */
 var Q=[
  ["2","Which particle has a negative charge?",["electron","proton","neutron","nucleus"],"Electrons are −1; protons +1; neutrons 0."],
  ["2","An atom has atomic number 11 and mass number 23. How many neutrons does it have?",["12","11","23","34"],"Neutrons = mass number − atomic number = 23 − 11 = 12."],
@@ -640,11 +712,45 @@ var Q=[
  ["5","A reaction mixture cools down. What type of reaction is it?",["endothermic","exothermic","neutralisation","combustion"],"Endothermic reactions take in heat from the surroundings."],
  ["5","To compare the energy changes of two reactions, measure…",["the temperature change","the final temperature only","the reaction time","the mass of the beaker"],"Start temperature to the highest or lowest temperature."],
  ["5","What is an alkali?",["A base that dissolves in water","Any acid","An insoluble metal oxide","A salt"],"All alkalis are bases, but not all bases dissolve."],
- ["5","Magnesium gains mass when it burns in a crucible because…",["oxygen from the air joins the magnesium","mass is created by the heat","the crucible melts","magnesium absorbs water"],"magnesium + oxygen → magnesium oxide."]
+ ["5","Magnesium gains mass when it burns in a crucible because…",["oxygen from the air joins the magnesium","mass is created by the heat","the crucible melts","magnesium absorbs water"],"magnesium + oxygen → magnesium oxide."],
+ ["2","How many electrons are in a chloride ion, Cl⁻? (Chlorine has atomic number 17.)",["18","17","16","35"],"A chlorine atom has 17 electrons and gains 1 to become Cl⁻."],
+ ["2","Which pair of elements would form an ionic compound?",["sodium and chlorine","hydrogen and oxygen","carbon and oxygen","nitrogen and hydrogen"],"Ionic compounds form between a metal and a non-metal."],
+ ["2","Which substance is made of molecules containing two atoms of the same element?",["Cl₂","HCl","NaCl","H₂O"],"Cl₂ is a diatomic molecule of one element."],
+ ["2","Which element is in Period 3 of the periodic table?",["sodium","lithium","potassium","helium"],"Period 3 atoms have three shells: sodium is 2,8,1."],
+ ["2","Which electronic structure belongs to a noble gas?",["2,8,8","2,8,7","2,8,1","2,4"],"Argon, 2,8,8, has a full outer shell."],
+ ["2","Bromine at room temperature is a…",["red-brown liquid","yellow-green gas","grey-black solid","colourless gas"],"Chlorine is the yellow-green gas; iodine is the grey-black solid."],
+ ["2","In a methane molecule (CH₄), how many electrons are shared in total?",["8","4","2","6"],"4 covalent bonds × 2 electrons per bond = 8."],
+ ["2","Which property is typical of a giant ionic compound?",["High melting point","Conducts electricity as a solid","Soft and slippery","Low boiling point"],"Strong attraction between ions in all directions needs a lot of energy to overcome."],
+ ["2","Diamond is very hard because…",["each carbon atom is joined to four others by strong covalent bonds","its layers slide over each other","it has delocalised electrons","it is made of ions"],"Sliding layers describe graphite."],
+ ["2","Which scientist suggested that electrons move in shells around the nucleus?",["Bohr","Dalton","Rutherford","Mendeleev"],"Dalton: solid spheres. Rutherford: nucleus. Bohr: shells."],
+ ["2","Which observation shows that the reaction of sodium with water gives out heat?",["The sodium melts into a ball","The sodium floats","Bubbles of gas form","The sodium moves around"],"Sodium melts at 98 °C, so the reaction must release heat."],
+ ["2","An ion has 12 protons and 10 electrons. What is its charge?",["2+","2−","10+","12+"],"12 positive and 10 negative charges leave a charge of 2+ (this is Mg²⁺)."],
+ ["5","Which metal reacts most vigorously with dilute hydrochloric acid?",["magnesium","zinc","iron","copper"],"Magnesium is highest in the reactivity series of these four."],
+ ["5","Complete: copper + silver nitrate → copper nitrate + …",["silver","copper","hydrogen","nitrogen"],"Copper displaces the less reactive silver."],
+ ["5","Which substance is NOT a salt?",["sodium hydroxide","sodium chloride","copper sulfate","potassium nitrate"],"Sodium hydroxide is an alkali (a soluble base)."],
+ ["5","Which substance is a base but NOT an alkali?",["copper oxide","sodium hydroxide","potassium hydroxide","lithium hydroxide"],"Copper oxide does not dissolve in water."],
+ ["5","What colour is universal indicator in a neutral solution?",["green","red","purple","orange"],"pH 7 is green; acids are red/orange, alkalis are blue/purple."],
+ ["5","Which reaction is endothermic?",["sodium carbonate + ethanoic acid","burning magnesium","zinc + sulfuric acid","sodium + water"],"Its temperature falls because it takes in heat."],
+ ["5","12 g of magnesium reacts with 8 g of oxygen. What mass of magnesium oxide forms?",["20 g","4 g","12 g","96 g"],"Mass is conserved: 12 + 8 = 20 g."],
+ ["5","Carbon can be used to extract iron from iron oxide because…",["carbon is more reactive than iron","carbon is less reactive than iron","iron is a non-metal","carbon is a metal"],"A more reactive element can remove oxygen from the oxide of a less reactive one."],
+ ["5","Aluminium + iron oxide → aluminium oxide + iron. What does this show?",["Aluminium is more reactive than iron","Iron is more reactive than aluminium","Mass is not conserved","Iron oxide is an alkali"],"This is the thermite reaction, a displacement reaction."],
+ ["5","Which change is a physical change?",["Crystallisation of copper sulfate solution","Burning magnesium","Zinc reacting with acid","Iron displacing copper"],"No new substance is made when crystals form."],
+ ["5","A reaction starts at 21 °C and reaches 29 °C. What is the temperature change?",["8 °C","50 °C","29 °C","21 °C"],"29 − 21 = 8 °C."],
+ ["5","Hydrochloric acid reacts with zinc. Which salt is made?",["zinc chloride","zinc sulfate","zinc nitrate","zinc hydroxide"],"Hydrochloric acid always makes chlorides."]
 ];
 var order,idx,score,missed,answered;
 function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
 function startQuiz(list){order=list||shuffle(Q.map(function(_,i){return i;}));idx=0;score=0;missed=[];renderQ();}
+function quizMenu(){
+  var all=Q.map(function(_,i){return i;}),u2=all.filter(function(i){return Q[i][0]==="2";}),u5=all.filter(function(i){return Q[i][0]==="5";});
+  var sets=[["Mixed practice","20 random questions from both units",function(){return shuffle(all).slice(0,20);}],
+    ["Everything","All "+all.length+" questions",function(){return shuffle(all);}],
+    ["Unit 2 only",u2.length+" questions on atoms, bonding and structures",function(){return shuffle(u2);}],
+    ["Unit 5 only",u5.length+" questions on reactivity, salts and conservation",function(){return shuffle(u5); }]];
+  var box=$("quizBox");box.innerHTML='<div class="qmenu"></div>';
+  sets.forEach(function(st){var b=document.createElement("button");b.innerHTML="<b>"+st[0]+"</b><span>"+st[1]+"</span>";
+    b.onclick=function(){startQuiz(st[2]());};box.firstChild.appendChild(b);});
+}
 function renderQ(){
   answered=false;var q=Q[order[idx]],box=$("quizBox"),opts=shuffle(q[2]);
   var col=q[0]==="2"?"var(--u2)":"var(--u5)";
@@ -668,12 +774,13 @@ function finish(){
   box.innerHTML='<div class="result"><div class="score" style="color:'+(pct>=80?"var(--good)":pct>=50?"var(--u2)":"var(--bad)")+'">'+score+' / '+order.length+'</div>'+
     '<p>'+(pct===100?"Every question right.":pct>=80?"Strong. Review the few you missed.":pct>=50?"Getting there. Re-read the topics behind the questions below.":"Go back through the notes, then try again.")+'</p></div>'+
     (missed.length?'<ol class="missed">'+list+'</ol>':"")+
-    '<div style="text-align:center">'+(missed.length?'<button class="btn ghost" id="retry">Retry the ones I missed</button> ':'')+'<button class="btn" id="again">Start again</button></div>';
+    '<div style="text-align:center">'+(missed.length?'<button class="btn ghost" id="retry">Retry the ones I missed</button> ':'')+'<button class="btn" id="again">Choose another set</button></div>';
   if(missed.length)$("retry").onclick=function(){startQuiz(missed.slice());};
-  $("again").onclick=function(){startQuiz();};
+  $("again").onclick=function(){quizMenu();};
 }
-startQuiz();
+quizMenu();
 
+/* =================== EXAM QUESTIONS =================== */
 var X2=[
  ["Aluminium has proton number 13. Write its electronic structure.",1,"2,8,3"],
  ["How many outer-shell electrons does a Group 2 atom have?",1,"Two"],
@@ -709,6 +816,290 @@ function xq(box,list){list.forEach(function(x,i){var d=document.createElement("d
 xq($("x2"),X2);xq($("x5"),X5);
 document.querySelectorAll("nav.tabs a").forEach(function(a){a.addEventListener("click",function(e){var t=document.getElementById(a.getAttribute("href").slice(1));if(t){e.preventDefault();t.scrollIntoView({behavior:"smooth",block:"start"});}});});
 var h=(location.hash||"").slice(1);if(h&&/^[A-Za-z0-9_~.-]+$/.test(h)){var t0=document.getElementById(h);if(t0)setTimeout(function(){t0.scrollIntoView({block:"start"});},50);}
+
+/* =================== DIAGRAMS (drawn as SVG) =================== */
+function f1(n){return (Math.round(n*10)/10).toString();}
+function elec(x,y,t){
+  if(t==="x") return '<path d="M'+f1(x-4)+' '+f1(y-4)+' L'+f1(x+4)+' '+f1(y+4)+' M'+f1(x+4)+' '+f1(y-4)+' L'+f1(x-4)+' '+f1(y+4)+'" stroke="var(--u5)" stroke-width="2.3" stroke-linecap="round"/>';
+  return '<circle cx="'+f1(x)+'" cy="'+f1(y)+'" r="3.9" fill="var(--u2)"/>';
+}
+function shellSet(cx,cy,sh,radii,typeFn,rot){
+  var s="";rot=rot||0;
+  sh.forEach(function(n,i){
+    s+='<circle cx="'+cx+'" cy="'+cy+'" r="'+radii[i]+'" fill="none" stroke="var(--soft)" stroke-width="1.3" opacity=".65"/>';
+    for(var k=0;k<n;k++){var a=-Math.PI/2+rot+k*2*Math.PI/n;s+=elec(cx+radii[i]*Math.cos(a),cy+radii[i]*Math.sin(a),typeFn(i,k,n));}
+  });
+  return s;
+}
+function svg(w,h,inner,label){var wide=w>=600;var el='<svg class="fig" viewBox="0 0 '+w+' '+h+'" role="img" aria-label="'+label+'"'+(wide?' style="min-width:540px;max-width:640px"':'')+'>'+inner+'</svg>';return wide?'<div class="tbl">'+el+'</div>':el;}
+function txt(x,y,s,o){o=o||{};return '<text class="figtxt" x="'+x+'" y="'+y+'" text-anchor="'+(o.a||"middle")+'" font-size="'+(o.s||13)+'" font-weight="'+(o.w||600)+'"'+(o.fill?' style="fill:'+o.fill+'"':'')+'>'+s+'</text>';} 
+function arrowDefs(id){return '<defs><marker id="'+id+'" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--soft)"/></marker></defs>';} 
+
+function figAtomS(){
+  var s=shellSet(150,130,[2,8,6],[42,66,90],function(){return "dot";});
+  s+='<circle cx="150" cy="130" r="23" fill="var(--nucleus)" stroke="var(--u2)" stroke-width="2"/>'+txt(150,127,"16p",{s:12,w:700})+txt(150,142,"16n",{s:12,w:700});
+  s+='<line x1="154" y1="40" x2="268" y2="34" stroke="var(--ink)" stroke-width="1.2"/>'+txt(282,39,"A",{s:16,w:800});
+  s+='<line x1="172" y1="134" x2="268" y2="150" stroke="var(--ink)" stroke-width="1.2"/>'+txt(282,155,"B",{s:16,w:800});
+  return svg(330,260,s,"Diagram of an atom with 16 protons, 16 neutrons and electrons arranged 2, 8, 6. A labels an electron, B labels the nucleus.");
+}
+function bracket(cx,cy,r,charge){
+  var y1=cy-r,y2=cy+r,l=cx-r,rr=cx+r;
+  return '<path d="M'+(l+7)+' '+y1+' H'+l+' V'+y2+' H'+(l+7)+'" fill="none" stroke="var(--ink)" stroke-width="1.6"/>'+
+         '<path d="M'+(rr-7)+' '+y1+' H'+rr+' V'+y2+' H'+(rr-7)+'" fill="none" stroke="var(--ink)" stroke-width="1.6"/>'+
+         txt(rr+10,y1+10,charge,{s:18,w:800,a:"start"});
+}
+function figIons(){
+  var s=arrowDefs("ahIon");
+  s+=shellSet(85,96,[2,8,1],[14,26,40],function(){return "x";})+txt(85,101,"Na",{s:12,w:800});
+  s+=shellSet(232,96,[2,8,7],[14,26,40],function(){return "dot";})+txt(232,101,"Cl",{s:12,w:800});
+  s+='<path d="M90 54 Q160 4 222 52" fill="none" stroke="var(--soft)" stroke-width="1.6" stroke-dasharray="4 3" marker-end="url(#ahIon)"/>';
+  s+=txt(318,103,"→",{s:30,w:700});
+  s+=shellSet(405,96,[2,8],[14,26],function(){return "x";})+txt(405,101,"Na",{s:12,w:800})+bracket(405,96,34,"+");
+  s+=shellSet(548,96,[2,8,8],[14,26,40],function(){return "dot";})+txt(548,101,"Cl",{s:12,w:800})+bracket(548,96,46,"−");
+  s+=txt(85,160,"sodium atom 2,8,1",{s:13})+txt(232,160,"chlorine atom 2,8,7",{s:13})+txt(405,160,"sodium ion",{s:13})+txt(548,160,"chloride ion",{s:13});
+  s+=txt(320,192,"× = electron from sodium     • = electron from chlorine",{s:13,w:500});
+  return svg(640,205,s,"Dot-and-cross diagram: a sodium atom transfers its outer electron to a chlorine atom, forming a sodium ion and a chloride ion.");
+}
+function figNH3(){
+  var s='';
+  s+='<circle cx="200" cy="100" r="46" fill="none" stroke="var(--soft)" stroke-width="1.6"/>';
+  [[128,100],[272,100],[200,172]].forEach(function(c){s+='<circle cx="'+c[0]+'" cy="'+c[1]+'" r="34" fill="none" stroke="var(--soft)" stroke-width="1.6"/>';});
+  s+=elec(158,94,"dot")+elec(158,107,"x")+elec(242,94,"dot")+elec(242,107,"x")+elec(193,142,"dot")+elec(207,142,"x");
+  s+=elec(193,62,"dot")+elec(207,62,"dot");
+  s+=txt(200,106,"N",{s:18,w:800})+txt(116,106,"H",{s:16,w:800})+txt(284,106,"H",{s:16,w:800})+txt(200,186,"H",{s:16,w:800});
+  s+=txt(200,226,"• = electron from nitrogen     × = electron from hydrogen",{s:12,w:500});
+  return svg(400,236,s,"Dot-and-cross diagram of ammonia: three shared pairs between nitrogen and hydrogen and one lone pair on nitrogen.");
+}
+function figStructures(){
+  var s="";
+  [10,210,410].forEach(function(ox,i){s+='<rect x="'+ox+'" y="10" width="180" height="152" rx="10" fill="none" stroke="var(--line)" stroke-width="1.5"/>'+txt(ox+90,186,"ABC"[i],{s:17,w:800});});
+  for(var r=0;r<4;r++)for(var c=0;c<6;c++){var x=10+28+c*25,y=10+33+r*29,pos=(r+c)%2===0;
+    s+='<circle cx="'+x+'" cy="'+y+'" r="11" fill="'+(pos?"var(--u2-soft)":"var(--u5-soft)")+'" stroke="'+(pos?"var(--u2)":"var(--u5)")+'" stroke-width="1.5"/>'+txt(x,y+5,pos?"+":"−",{s:14,w:800});}
+  [[30,35,"h"],[110,28,"v"],[148,82,"h"],[40,95,"v"],[92,88,"h"],[118,130,"h"],[34,140,"h"]].forEach(function(m){
+    var x=210+m[0],y=10+m[1],x2=m[2]==="h"?x+13:x,y2=m[2]==="h"?y:y+13;
+    s+='<circle cx="'+x+'" cy="'+y+'" r="7" fill="var(--u2-soft)" stroke="var(--u2)" stroke-width="1.5"/><circle cx="'+x2+'" cy="'+y2+'" r="7" fill="var(--u2-soft)" stroke="var(--u2)" stroke-width="1.5"/>';});
+  var P=[];for(r=0;r<5;r++){P[r]=[];for(c=0;c<6;c++){P[r][c]=[410+24+c*26+(r%2)*13,10+24+r*27];}}
+  for(r=0;r<5;r++)for(c=0;c<6;c++){var p=P[r][c];
+    if(c<5)s+='<line x1="'+p[0]+'" y1="'+p[1]+'" x2="'+P[r][c+1][0]+'" y2="'+P[r][c+1][1]+'" stroke="var(--soft)" stroke-width="1.5"/>';
+    if(r<4){var a=P[r+1][c];s+='<line x1="'+p[0]+'" y1="'+p[1]+'" x2="'+a[0]+'" y2="'+a[1]+'" stroke="var(--soft)" stroke-width="1.5"/>';
+      var bI=(r%2===0)?c-1:c+1;if(bI>=0&&bI<6){var b=P[r+1][bI];s+='<line x1="'+p[0]+'" y1="'+p[1]+'" x2="'+b[0]+'" y2="'+b[1]+'" stroke="var(--soft)" stroke-width="1.5"/>';}}}
+  for(r=0;r<5;r++)for(c=0;c<6;c++)s+='<circle cx="'+P[r][c][0]+'" cy="'+P[r][c][1]+'" r="4.5" fill="var(--ink)"/>';
+  return svg(600,198,s,"Three structures: A is a lattice of positive and negative ions, B is separate small molecules, C is a network of atoms all joined by bonds.");
+}
+function figGraphite(){
+  var s="",sz=17,dx=Math.sqrt(3)*sz;
+  function hexRow(y0,x0){var out="";for(var h=0;h<7;h++){var cx=x0+h*dx,pts=[];for(var k=0;k<6;k++){var a=Math.PI/180*(60*k-30);pts.push(f1(cx+sz*Math.cos(a))+","+f1(y0+sz*Math.sin(a)));}
+    out+='<polygon points="'+pts.join(" ")+'" fill="none" stroke="var(--ink)" stroke-width="1.5"/>';
+    pts.forEach(function(q){var xy=q.split(",");out+='<circle cx="'+xy[0]+'" cy="'+xy[1]+'" r="2.6" fill="var(--ink)"/>';});}return out;}
+  s+=hexRow(46,60)+hexRow(126,60+dx/2);
+  [95,165,235].forEach(function(x){s+='<line x1="'+x+'" y1="68" x2="'+x+'" y2="104" stroke="var(--soft)" stroke-width="1.4" stroke-dasharray="3 3"/>';});
+  s+=txt(300,90,"weak forces",{s:12,a:"start"})+txt(300,104,"between layers",{s:12,a:"start"});
+  s+=txt(210,170,"Graphite: layers of carbon atoms, each joined to 3 others",{s:12,w:500});
+  return svg(430,182,s,"Graphite: two flat layers of hexagonal rings of carbon atoms with weak forces between the layers.");
+}
+function figFiltration(){
+  var s="";
+  s+='<path d="M95 40 L255 40 L188 118 L188 168 L172 168 L172 118 Z" fill="none" stroke="var(--ink)" stroke-width="2"/>';
+  s+='<path d="M107 46 L243 46 L180 112 Z" fill="none" stroke="var(--soft)" stroke-width="1.6" stroke-dasharray="5 3"/>';
+  [[170,96],[178,100],[186,95],[174,104],[182,106],[166,101],[190,101],[180,92]].forEach(function(d){s+='<circle cx="'+d[0]+'" cy="'+d[1]+'" r="3.4" fill="#8B5A2B"/>';});
+  s+='<path d="M162 170 L162 196 L104 286 L256 286 L198 196 L198 170" fill="none" stroke="var(--ink)" stroke-width="2"/>';
+  s+='<path d="M124 255 L236 255 L256 286 L104 286 Z" fill="rgba(47,111,214,.28)" stroke="none"/>';
+  s+='<circle cx="180" cy="190" r="2.6" fill="rgba(47,111,214,.8)"/><circle cx="180" cy="214" r="2.6" fill="rgba(47,111,214,.8)"/>';
+  s+='<line x1="194" y1="100" x2="292" y2="86" stroke="var(--ink)" stroke-width="1.2"/>'+txt(304,91,"P",{s:16,w:800});
+  s+='<line x1="230" y1="270" x2="292" y2="262" stroke="var(--ink)" stroke-width="1.2"/>'+txt(304,267,"Q",{s:16,w:800});
+  s+=txt(60,64,"funnel",{s:12,w:500})+txt(40,240,"conical flask",{s:12,w:500,a:"start"});
+  return svg(340,300,s,"Filtration: a funnel lined with filter paper containing solid P, above a conical flask collecting liquid Q.");
+}
+function lineGraph(o){
+  var W=470,H=290,L=58,R=18,T=22,B=50,pw=W-L-R,ph=H-T-B,s="";
+  function X(v){return L+(v-o.xmin)/(o.xmax-o.xmin)*pw;}
+  function Y(v){return T+ph-(v-o.ymin)/(o.ymax-o.ymin)*ph;}
+  for(var v=o.ymin;v<=o.ymax+1e-9;v+=o.ystep){var y=Y(v);s+='<line x1="'+L+'" y1="'+f1(y)+'" x2="'+(L+pw)+'" y2="'+f1(y)+'" stroke="var(--line)" stroke-width="1"/>'+txt(L-8,y+4,v.toFixed(o.ydp||0),{s:11.5,w:500,a:"end"});}
+  for(v=o.xmin;v<=o.xmax+1e-9;v+=o.xstep){var x=X(v);s+='<line x1="'+f1(x)+'" y1="'+T+'" x2="'+f1(x)+'" y2="'+(T+ph)+'" stroke="var(--line)" stroke-width="1"/>'+txt(x,T+ph+18,v,{s:11.5,w:500});}
+  s+='<line x1="'+L+'" y1="'+(T+ph)+'" x2="'+(L+pw)+'" y2="'+(T+ph)+'" stroke="var(--ink)" stroke-width="1.6"/><line x1="'+L+'" y1="'+T+'" x2="'+L+'" y2="'+(T+ph)+'" stroke="var(--ink)" stroke-width="1.6"/>';
+  s+=txt(L+pw/2,H-8,o.xlabel,{s:12.5})+'<text class="figtxt" transform="translate(15 '+(T+ph/2)+') rotate(-90)" text-anchor="middle" font-size="12.5" font-weight="600">'+o.ylabel+'</text>';
+  o.series.forEach(function(se,i){
+    var pts=se.pts.map(function(p){return f1(X(p[0]))+","+f1(Y(p[1]));}).join(" ");
+    var col=i===0?"var(--u2)":"var(--u5)";
+    s+='<polyline points="'+pts+'" fill="none" stroke="'+col+'" stroke-width="2.4"'+(i?' stroke-dasharray="6 4"':'')+'/>';
+    se.pts.forEach(function(p){s+='<circle cx="'+f1(X(p[0]))+'" cy="'+f1(Y(p[1]))+'" r="3.8" fill="'+col+'"/>';});
+    if(se.label){var lp=se.pts[se.pts.length-1];s+=txt(X(lp[0])-4,Y(lp[1])+(i?18:-10),se.label,{s:13,w:800,a:"end",fill:col});}
+  });
+  return svg(W,H,s,o.alt);
+}
+
+/* =================== PRACTICE PAPER =================== */
+var PAPER=[
+ {n:1,u:"2",title:"Atomic structure",intro:"<p>The diagram shows an atom of an element.</p>",fig:figAtomS,parts:[
+  {t:"drop",q:"Name particle A.",m:1,opts:["proton","neutron","electron","nucleus"],ans:"electron"},
+  {t:"tick",q:"Part B contains two types of particle. Tick <b>two</b> boxes.",m:2,opts:["protons","neutrons","electrons","ions"],ans:["protons","neutrons"]},
+  {t:"num",q:"What is the atomic number of this element?",m:1,ans:[16,16],note:"Atomic number = number of protons = 16."},
+  {t:"num",q:"What is the mass number of this atom?",m:1,ans:[32,32],note:"Mass number = protons + neutrons = 16 + 16 = 32."},
+  {t:"drop",q:"Name the element.",m:1,opts:["oxygen","silicon","sulfur","chlorine"],ans:"sulfur"},
+  {t:"num",q:"Which group of the periodic table is this element in?",m:1,ans:[6,6],note:"It has 6 electrons in its outer shell."}]},
+ {n:2,u:"2",title:"Group 1 metals",intro:'<p>A teacher adds small pieces of Group 1 metals to water. The table shows some data.</p><div class="tbl"><table><tr><th>Metal</th><th>Melting point (°C)</th><th>Time to react completely (s)</th></tr><tr><td>Lithium</td><td>181</td><td>120</td></tr><tr><td>Sodium</td><td>98</td><td>40</td></tr><tr><td>Potassium</td><td>64</td><td>?</td></tr><tr><td>Rubidium</td><td>39</td><td>2</td></tr><tr><td>Caesium</td><td>?</td><td>less than 1</td></tr></table></div>',parts:[
+  {t:"drop",q:"Going down Group 1, the melting point {0}.",m:1,blanks:[{opts:["increases","decreases","stays the same"],ans:"decreases"}]},
+  {t:"num",q:"Predict the melting point of caesium.",unit:"°C",m:1,ans:[0,38],note:"Any value below 39 °C. (The real value is 28 °C.)"},
+  {t:"num",q:"Predict the time for potassium to react completely.",unit:"s",m:1,ans:[3,39],note:"Between rubidium (2 s) and sodium (40 s)."},
+  {t:"drop",q:"Complete the word equation: sodium + water → {0} + {1}",m:2,blanks:[{opts:["sodium hydroxide","sodium oxide","sodium chloride"],ans:"sodium hydroxide"},{opts:["hydrogen","oxygen","carbon dioxide"],ans:"hydrogen"}]},
+  {t:"text",q:"Explain why potassium is more reactive than lithium.",m:2,scheme:["The outer electron of potassium is further from the nucleus [1]","so it is attracted less strongly and is lost more easily [1]"]},
+  {t:"text",q:"State <b>one</b> safety precaution the teacher should take.",m:1,scheme:["Any one: use a small piece of metal; use a safety screen; wear eye protection; students stand at a safe distance [1]"]}]},
+ {n:3,u:"2",title:"Group 7 halogens",intro:'<div class="tbl"><table><tr><th>Halogen</th><th>State at room temperature</th><th>Colour</th></tr><tr><td>Fluorine</td><td>gas</td><td>pale yellow</td></tr><tr><td>Chlorine</td><td>gas</td><td>yellow-green</td></tr><tr><td>Bromine</td><td>liquid</td><td>red-brown</td></tr><tr><td>Iodine</td><td>solid</td><td>grey-black</td></tr><tr><td>Astatine</td><td>?</td><td>?</td></tr></table></div>',parts:[
+  {t:"drop",q:"Predict the state of astatine at room temperature.",m:1,opts:["solid","liquid","gas"],ans:"solid"},
+  {t:"drop",q:"Predict the colour of astatine.",m:1,opts:["black","pale yellow","colourless","yellow-green"],ans:"black",note:"Colours get darker down the group."},
+  {t:"drop",q:"Which halogen in the table is the most reactive?",m:1,opts:["fluorine","chlorine","bromine","iodine","astatine"],ans:"fluorine",note:"Reactivity decreases down Group 7."},
+  {t:"text",q:"Chlorine and bromine have similar chemical properties. Explain why.",m:1,scheme:["They have the same number of outer-shell electrons (7) / they are in the same group [1]"]}]},
+ {n:4,u:"2",title:"Forming ions",intro:"<p>The diagram shows how sodium and chlorine atoms form ions.</p>",fig:figIons,parts:[
+  {t:"num",q:"How many electrons does a sodium atom lose?",m:1,ans:[1,1]},
+  {t:"drop",q:"What is the charge on a chloride ion?",m:1,opts:["1+","1−","2+","2−"],ans:"1−"},
+  {t:"text",q:"Explain why the sodium ion has a positive charge.",m:2,scheme:["The sodium atom loses one (negative) electron [1]","so it now has 11 protons but only 10 electrons / more protons than electrons [1]"]},
+  {t:"drop",q:"Name the type of bonding in sodium chloride.",m:1,opts:["ionic","covalent","metallic"],ans:"ionic"},
+  {t:"drop",q:"The formula of magnesium oxide is {0} and the formula of calcium chloride is {1}.",m:2,blanks:[{opts:["MgO","Mg₂O","MgO₂","Mg₂O₃"],ans:"MgO"},{opts:["CaCl","CaCl₂","Ca₂Cl","Ca₂Cl₃"],ans:"CaCl₂"}],note:"Balance the charges: Mg²⁺ with O²⁻; Ca²⁺ with two Cl⁻."}]},
+ {n:5,u:"2",title:"Covalent bonding",intro:"<p>The diagram shows the outer electrons in a molecule of ammonia, NH₃.</p>",fig:figNH3,parts:[
+  {t:"num",q:"How many covalent bonds are there in one ammonia molecule?",m:1,ans:[3,3]},
+  {t:"num",q:"How many pairs of electrons on the nitrogen atom are <b>not</b> used in bonding?",m:1,ans:[1,1]},
+  {t:"text",q:"Describe what is meant by a covalent bond.",m:2,scheme:["A pair of electrons [1]","shared between two atoms [1]"]},
+  {t:"tick",q:"Which two substances are made of small molecules? Tick <b>two</b> boxes.",m:2,opts:["water","oxygen","sodium chloride","diamond"],ans:["water","oxygen"]}]},
+ {n:6,u:"2",title:"Structure and properties",intro:"<p>The diagrams show the structures of three substances, A, B and C.</p>",fig:figStructures,parts:[
+  {t:"drop",q:"Choose the correct structure for each description.<br>Very high melting point; does not conduct electricity: {0}<br>Conducts electricity only when molten or dissolved in water: {1}<br>Low melting point: {2}",m:3,blanks:[{opts:["A","B","C"],ans:"C"},{opts:["A","B","C"],ans:"A"},{opts:["A","B","C"],ans:"B"}]},
+  {t:"text",q:"Explain why substance B has a low melting point.",m:2,scheme:["The forces between the molecules are weak [1]","so little energy is needed to overcome them; the covalent bonds inside the molecules do not break [1]"]},
+  {t:"text",q:"Graphite conducts electricity but diamond does not. Explain why.",fig:figGraphite,m:2,scheme:["Graphite has delocalised (free) electrons [1]","which can move and carry charge along the layers; in diamond every outer electron is used in a bond [1]"]}]},
+ {n:7,u:"5",title:"Reactivity and displacement",intro:'<p>A student adds four metals to different salt solutions. ✓ = reaction, ✗ = no reaction, — = not done.</p><div class="tbl"><table><tr><th>Metal added</th><th>magnesium sulfate</th><th>zinc sulfate</th><th>copper sulfate</th></tr><tr><td>magnesium</td><td>—</td><td>✓</td><td>✓</td></tr><tr><td>metal X</td><td>✗</td><td>✓</td><td>✓</td></tr><tr><td>zinc</td><td>✗</td><td>—</td><td>✓</td></tr><tr><td>copper</td><td>✗</td><td>✗</td><td>—</td></tr></table></div>',parts:[
+  {t:"order",q:"Put the four metals in order of reactivity, <b>most reactive first</b>.",m:2,items:["magnesium","metal X","zinc","copper"]},
+  {t:"drop",q:"Complete the word equation: zinc + copper sulfate → {0} + {1}",m:2,blanks:[{opts:["zinc sulfate","copper sulfate","zinc oxide"],ans:"zinc sulfate"},{opts:["copper","zinc","hydrogen"],ans:"copper"}]},
+  {t:"text",q:"Describe <b>two</b> things you would see when iron is added to copper sulfate solution.",m:2,scheme:["The blue colour fades / the solution turns pale green [1]","a reddish-brown (pink) solid forms on the iron [1]"]},
+  {t:"text",q:"Explain why copper does not react with zinc sulfate solution.",m:1,scheme:["Copper is less reactive than zinc, so it cannot displace zinc [1]"]}]},
+ {n:8,u:"5",title:"Making copper sulfate crystals",intro:"<p>A student makes copper sulfate crystals from copper carbonate. The diagram shows one stage of the method.</p>",fig:figFiltration,parts:[
+  {t:"drop",q:"Which acid reacts with copper carbonate to make copper sulfate?",m:1,opts:["hydrochloric acid","sulfuric acid","nitric acid"],ans:"sulfuric acid"},
+  {t:"order",q:"Put the steps of the method in the correct order.",m:2,items:["Add copper carbonate to dilute sulfuric acid until no more reacts","Filter the mixture","Gently heat the filtrate to evaporate some of the water","Leave the solution to cool so that crystals form","Pat the crystals dry with filter paper"]},
+  {t:"text",q:"Why is copper carbonate added until some is left over (in excess)?",m:1,scheme:["To make sure all of the acid has reacted / is used up [1]"]},
+  {t:"drop",q:"Look at the diagram. P is the {0} and Q is the {1}.",m:2,blanks:[{opts:["residue","filtrate","solvent"],ans:"residue"},{opts:["filtrate","residue","precipitate"],ans:"filtrate"}]},
+  {t:"drop",q:"When copper carbonate reacts with the acid, the gas given off is {0}. The test for this gas: it {1}.",m:2,blanks:[{opts:["carbon dioxide","hydrogen","oxygen"],ans:"carbon dioxide"},{opts:["turns limewater cloudy","gives a squeaky pop with a lighted splint","relights a glowing splint"],ans:"turns limewater cloudy"}]}]},
+ {n:9,u:"5",title:"Acids and salts",intro:"<p>Complete the word equations.</p>",parts:[
+  {t:"drop",q:"magnesium + hydrochloric acid → magnesium chloride + {0}",m:1,blanks:[{opts:["hydrogen","water","carbon dioxide"],ans:"hydrogen"}]},
+  {t:"drop",q:"copper oxide + sulfuric acid → {0} + water",m:1,blanks:[{opts:["copper sulfate","copper chloride","copper sulfide"],ans:"copper sulfate"}]},
+  {t:"drop",q:"sodium hydroxide + nitric acid → sodium nitrate + {0}",m:1,blanks:[{opts:["water","hydrogen","carbon dioxide"],ans:"water"}]},
+  {t:"text",q:"Copper oxide is a base but it is not an alkali. Explain why.",m:1,scheme:["It does not dissolve in water (an alkali is a base that dissolves in water) [1]"]}]},
+ {n:10,u:"5",title:"Conservation of mass",intro:"<p>A student adds marble chips (calcium carbonate) to hydrochloric acid in an <b>open</b> flask on a balance. The graph shows the mass of the flask and contents.</p>",fig:function(){return lineGraph({xmin:0,xmax:5,xstep:1,ymin:150.0,ymax:152.4,ystep:0.4,ydp:1,xlabel:"Time (minutes)",ylabel:"Mass (g)",alt:"Line graph of mass falling from 152.0 g at 0 minutes to 150.3 g at 4 and 5 minutes.",series:[{pts:[[0,152.0],[1,151.2],[2,150.7],[3,150.4],[4,150.3],[5,150.3]]}]});},parts:[
+  {t:"num",q:"Work out the total loss in mass.",unit:"g",m:1,ans:[1.7,1.7],note:"152.0 − 150.3 = 1.7 g"},
+  {t:"text",q:"Explain why the mass decreases.",m:2,scheme:["Carbon dioxide gas is produced [1]","and it escapes from the open flask into the air [1]"]},
+  {t:"drop",q:"Why does the mass stop changing after 4 minutes?",m:1,opts:["The reaction has finished","The balance has stopped working","Mass is being destroyed","The gas stays in the flask"],ans:"The reaction has finished"},
+  {t:"num",q:"The experiment is repeated in a <b>sealed</b> flask. The starting mass is 152.0 g. Predict the final mass.",unit:"g",m:1,ans:[152,152],note:"No atoms enter or leave a sealed flask, so the mass stays the same."}]},
+ {n:11,u:"5",title:"Burning magnesium",intro:'<div class="tbl"><table><tr><th></th><th>Mass (g)</th></tr><tr><td>Crucible + lid + magnesium before heating</td><td>25.40</td></tr><tr><td>Crucible + lid + solid after heating</td><td>25.56</td></tr></table></div>',parts:[
+  {t:"num",q:"Calculate the mass of oxygen that combined with the magnesium.",unit:"g",m:1,ans:[0.16,0.16],note:"25.56 − 25.40 = 0.16 g"},
+  {t:"text",q:"Mass is conserved in reactions, but the mass of the solid increases. Explain why.",m:2,scheme:["Magnesium reacts with oxygen from the air [1]","the oxygen atoms become part of the solid (magnesium oxide), so the solid gets heavier [1]"]}]},
+ {n:12,u:"5",title:"Energy changes",intro:"<p>A student measures the temperature of two reaction mixtures, A and B.</p>",fig:function(){return lineGraph({xmin:0,xmax:5,xstep:1,ymin:10,ymax:35,ystep:5,xlabel:"Time (minutes)",ylabel:"Temperature (°C)",alt:"Line graph: reaction A rises from 20 °C to 32 °C; reaction B falls from 20 °C to 14 °C.",series:[{label:"A",pts:[[0,20],[1,25],[2,29],[3,32],[4,32],[5,32]]},{label:"B",pts:[[0,20],[1,17],[2,15],[3,14],[4,14],[5,14]]}]});},parts:[
+  {t:"drop",q:"Which reaction is exothermic?",m:1,opts:["A","B"],ans:"A"},
+  {t:"num",q:"What is the temperature change in reaction B?",unit:"°C",m:1,ans:[6,6],abs:true,note:"20 °C − 14 °C = a fall of 6 °C."},
+  {t:"text",q:"Which reaction has the larger energy change? Explain your answer using the graph.",m:2,scheme:["Reaction A [1]","its temperature changed by 12 °C, which is more than the 6 °C change for B [1]"]},
+  {t:"text",q:"State the law of conservation of energy.",m:1,scheme:["Energy cannot be created or destroyed; it can only be transferred [1]"]}]}
+];
+window.revisionPaper=PAPER;
+
+var pAward={},pIds=[];
+function partId(q,i){return q.n+"abcdefgh"[i];}
+function totalMarks(){var t=0;PAPER.forEach(function(q){q.parts.forEach(function(p){t+=p.m;});});return t;}
+function selHTML(opts,b){return '<select data-b="'+b+'" aria-label="Choose an answer"><option value="">Choose…</option>'+opts.map(function(o){return '<option>'+esc(o)+'</option>';}).join("")+'</select>';} 
+function updateBar(){
+  var got=0,done=0;pIds.forEach(function(id){if(pAward[id]!==undefined){got+=pAward[id];done++;}});
+  $("paperBar").innerHTML='Score: '+got+' / '+totalMarks()+' <span>Parts marked: '+done+' / '+pIds.length+'</span>';
+}
+function renderPaper(){
+  pAward={};pIds=[];$("paperResult").innerHTML="";
+  var box=$("paperBox");box.innerHTML="";
+  PAPER.forEach(function(q){
+    var tot=q.parts.reduce(function(a,p){return a+p.m;},0);
+    var card=document.createElement("div");card.className="pq-card";
+    card.innerHTML='<div class="pq-head"><h3>Question '+q.n+': '+q.title+'</h3><span class="chip u'+q.u+'">Unit '+q.u+' · '+tot+' marks</span></div><div class="pq-intro">'+(q.intro||"")+(q.fig?typeof q.fig==="function"?q.fig():"":"")+'</div>';
+    q.parts.forEach(function(p,i){
+      var id=partId(q,i);pIds.push(id);
+      var d=document.createElement("div");d.className="part";d.id="pp-"+id;d.setAttribute("data-type",p.t);
+      var stem=p.q,pin="";
+      if(p.t==="drop"){
+        if(p.blanks){stem=stem.replace(/\{(\d)\}/g,function(_,k){return selHTML(p.blanks[+k].opts,k);});}
+        else{pin='<div class="pin">'+selHTML(p.opts,0)+'</div>';} }
+      else if(p.t==="tick"){
+        pin='<div class="pin ticks">'+p.opts.map(function(o){return '<label><input type="checkbox" value="'+esc(o)+'"> '+esc(o)+'</label>';}).join("")+'</div>';
+      }else if(p.t==="num"){
+        pin='<div class="pin num"><input type="text" inputmode="decimal" aria-label="Your answer" autocomplete="off">'+(p.unit?'<span>'+p.unit+'</span>':'')+'</div>';
+      }else if(p.t==="order"){
+        var ord=p.items.slice();do{ord=shuffle(ord);}while(ord.join("|")===p.items.join("|"));
+        pin='<ol class="pin olist">'+ord.map(function(o){return '<li data-v="'+esc(o)+'"><b></b><span>'+esc(o)+'</span><button type="button" class="up" aria-label="Move up">↑</button><button type="button" class="dn" aria-label="Move down">↓</button></li>';}).join("")+'</ol>';
+      }else if(p.t==="text"){
+        pin='<div class="pin"><textarea aria-label="Your answer" placeholder="Write your answer here…"></textarea></div>';
+      }
+      d.innerHTML='<div class="stem"><div class="inline"><b>('+"abcdefgh"[i]+')</b> '+stem+'</div><span class="mk">['+p.m+']</span></div>'+(p.fig&&typeof p.fig==="function"?p.fig():"")+pin+
+        '<button type="button" class="pcheck'+(p.t==="text"?' alt':'')+'">'+(p.t==="text"?"Show mark scheme":"Check answer")+'</button><div class="pfb"></div>';
+      card.appendChild(d);
+      wirePart(d,p,id);
+    });
+    box.appendChild(card);
+  });
+  updateBar();
+}
+function numberOrder(ol){Array.prototype.forEach.call(ol.children,function(li,k){li.querySelector("b").textContent=(k+1)+".";});}
+function wirePart(d,p,id){
+  var btn=d.querySelector(".pcheck"),fb=d.querySelector(".pfb");
+  if(p.t==="order"){var ol=d.querySelector(".olist");numberOrder(ol);
+    ol.addEventListener("click",function(e){var b=e.target.closest("button");if(!b||ol.dataset.locked)return;var li=b.closest("li");
+      if(b.classList.contains("up")&&li.previousElementSibling)ol.insertBefore(li,li.previousElementSibling);
+      if(b.classList.contains("dn")&&li.nextElementSibling)ol.insertBefore(li.nextElementSibling,li);numberOrder(ol);});}
+  btn.onclick=function(){
+    if(p.t==="text"){
+      fb.className="pfb show info";
+      var aw='<div class="award">Marks you earned: ';for(var k=0;k<=p.m;k++)aw+='<button type="button" data-m="'+k+'" aria-pressed="'+(pAward[id]===k?"true":"false")+'">'+k+'</button>';aw+='</div>';
+      fb.innerHTML='<b>Mark scheme</b><ul>'+p.scheme.map(function(s){return '<li>'+esc(s)+'</li>';}).join("")+'</ul>'+aw;
+      btn.style.display="none";
+      fb.querySelectorAll(".award button").forEach(function(b){b.onclick=function(){pAward[id]=+b.getAttribute("data-m");
+        fb.querySelectorAll(".award button").forEach(function(x){x.setAttribute("aria-pressed",x===b?"true":"false");});updateBar();};});
+      return;
+    }
+    var got=0,show="";
+    if(p.t==="drop"){
+      var sels=d.querySelectorAll("select");
+      if(Array.prototype.some.call(sels,function(s){return !s.value;})){fb.className="pfb show info";fb.textContent="Choose an answer for every box first.";return;}
+      var keys=p.blanks?p.blanks.map(function(b){return b.ans;}):[p.ans];
+      Array.prototype.forEach.call(sels,function(s,k){if(s.value===keys[k])got++;s.disabled=true;});
+      show=keys.join(" · ");
+    }else if(p.t==="tick"){
+      var ch=Array.prototype.filter.call(d.querySelectorAll("input:checked"),function(){return true;}).map(function(x){return x.value;});
+      if(!ch.length){fb.className="pfb show info";fb.textContent="Tick the boxes first.";return;}
+      var right=ch.filter(function(v){return p.ans.indexOf(v)>=0;}).length,wrong=ch.length-right;
+      got=Math.max(0,right-wrong);
+      d.querySelectorAll("input").forEach(function(x){x.disabled=true;});show=p.ans.join(" and ");
+    }else if(p.t==="num"){
+      var inp=d.querySelector("input"),raw=inp.value.trim().replace(",",".").replace("−","-");
+      if(raw===""||isNaN(parseFloat(raw))){fb.className="pfb show info";fb.textContent="Type a number first.";return;}
+      var v=parseFloat(raw);if(p.abs)v=Math.abs(v);
+      got=(v>=p.ans[0]-1e-9&&v<=p.ans[1]+1e-9)?p.m:0;inp.disabled=true;
+      show=p.ans[0]===p.ans[1]?String(p.ans[0])+(p.unit?" "+p.unit:""):"between "+p.ans[0]+" and "+p.ans[1]+(p.unit?" "+p.unit:"");
+    }else if(p.t==="order"){
+      var ol=d.querySelector(".olist"),cur=Array.prototype.map.call(ol.children,function(li){return li.getAttribute("data-v");});
+      if(cur.join("|")===p.items.join("|"))got=p.m;
+      else{var diff=[];for(var i=0;i<cur.length;i++)if(cur[i]!==p.items[i])diff.push(i);if(diff.length===2&&diff[1]===diff[0]+1&&cur[diff[0]]===p.items[diff[1]]&&cur[diff[1]]===p.items[diff[0]])got=Math.max(0,p.m-1);}
+      ol.dataset.locked="1";ol.querySelectorAll("button").forEach(function(b){b.disabled=true;});
+      show='<ol style="margin:4px 0 0;padding-left:20px">'+p.items.map(function(s){return "<li>"+esc(s)+"</li>";}).join("")+'</ol>';
+    }
+    pAward[id]=got;
+    fb.className="pfb show "+(got===p.m?"good":got>0?"half":"bad");
+    fb.innerHTML='<b>'+got+' / '+p.m+' mark'+(p.m>1?"s":"")+'</b>'+(got===p.m?"":(p.t==="order"?". Correct order:"+show:". Answer: "+esc(show)))+(p.note?'<div style="margin-top:4px">'+esc(p.note)+'</div>':'');
+    btn.style.display="none";updateBar();
+  };
+}
+function paperResults(){
+  var rows="",u={2:[0,0],5:[0,0]},unmarked=0;
+  PAPER.forEach(function(q){var got=0,tot=0;q.parts.forEach(function(p,i){var a=pAward[partId(q,i)];tot+=p.m;if(a===undefined)unmarked++;else got+=a;});
+    u[q.u][0]+=got;u[q.u][1]+=tot;rows+='<tr><td>Question '+q.n+': '+q.title+'</td><td>Unit '+q.u+'</td><td>'+got+' / '+tot+'</td></tr>';});
+  var g=u[2][0]+u[5][0],t=u[2][1]+u[5][1],pct=Math.round(g/t*100);
+  $("paperResult").innerHTML='<div class="presult"><h3>Your results: '+g+' / '+t+' ('+pct+'%)</h3>'+
+    '<p>Unit 2: '+u[2][0]+' / '+u[2][1]+' · Unit 5: '+u[5][0]+' / '+u[5][1]+(unmarked?' · <b>'+unmarked+' part'+(unmarked>1?"s":"")+' not marked yet</b>':'')+'</p>'+
+    '<div class="tbl"><table><tr><th>Question</th><th>Unit</th><th>Marks</th></tr>'+rows+'</table></div>'+
+    '<p>Re-read the notes for any question where you lost more than half the marks, then try the paper again.</p></div>';
+  $("paperResult").scrollIntoView({behavior:"smooth",block:"start"});
+}
+$("paperFinish").onclick=paperResults;
+$("paperReset").onclick=function(){renderPaper();$("paper").scrollIntoView({block:"start"});};
+renderPaper();
 })();
 </script>
 </body>
