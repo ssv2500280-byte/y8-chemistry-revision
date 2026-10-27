@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Chemistry revision: Units 2 and 5</title>
+<style>
+:root{
+  --ink:#17213A; --soft:#4B5874; --paper:#F4F6FA; --surface:#FFFFFF; --line:#D9DFEA;
+  --u2:#2556C4; --u2-soft:#E6ECFA; --u5:#1E7F55; --u5-soft:#E2F2EA;
+  --good:#1E7F55; --good-soft:#E2F2EA; --bad:#C23B3B; --bad-soft:#FBE7E7; --warn:#9A6A00; --warn-soft:#FFF4D6;
+  --nucleus:#E9EEF8;
+  --font: ui-rounded, "SF Pro Rounded", "Nunito", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ink:#E6EBF5; --soft:#A9B4CC; --paper:#0F1626; --surface:#17213A; --line:#2B3756;
+    --u2:#7FA2FF; --u2-soft:#1F2C52; --u5:#5FD3A0; --u5-soft:#173A2E;
+    --good:#5FD3A0; --good-soft:#173A2E; --bad:#FF8A8A; --bad-soft:#40222A; --warn:#F0C255; --warn-soft:#3A3018;
+    --nucleus:#24314F;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+    --ink:#E6EBF5; --soft:#A9B4CC; --paper:#0F1626; --surface:#17213A; --line:#2B3756;
+    --u2:#7FA2FF; --u2-soft:#1F2C52; --u5:#5FD3A0; --u5-soft:#173A2E;
+    --good:#5FD3A0; --good-soft:#173A2E; --bad:#FF8A8A; --bad-soft:#40222A; --warn:#F0C255; --warn-soft:#3A3018;
+    --nucleus:#24314F;
+    color-scheme: dark;
+  }
+
+*{box-sizing:border-box}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-behavior:smooth;scroll-padding-top:calc(64px + env(safe-area-inset-top,0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--paper)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+a{color:inherit}
+.wrap{max-width:960px;margin:0 auto;padding:0 18px}
+p,li{max-width:72ch}
+h1,h2,h3,h4{line-height:1.2;margin:0}
+h2{font-size:30px;letter-spacing:-.01em}
+h3{font-size:21px;margin-bottom:10px}
+h4{font-size:17px;margin:16px 0 6px}
+sub,sup{font-size:.72em;line-height:0}
+table{border-collapse:collapse;width:100%;margin:8px 0 14px;font-size:15.5px}
+th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+th{background:var(--paper);font-weight:700}
+.tbl{overflow-x:auto}
+button,select,input{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--u2);outline-offset:2px;border-radius:6px}
+
+.hero{padding:34px 0 22px}
+.hero h1{font-size:clamp(30px,5vw,46px);letter-spacing:-.02em;margin-bottom:8px}
+.hero .lede{color:var(--soft);font-size:18px;margin:0 0 18px}
+.tests{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:22px}
+.test{border-radius:12px;padding:8px 14px;font-size:15px;font-weight:600}
+.test.u2{background:var(--u2-soft);color:var(--u2)} .test.u5{background:var(--u5-soft);color:var(--u5)}
+
+.lab{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px;align-items:center;
+  background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:22px}
+@media (max-width:760px){.lab{grid-template-columns:1fr}}
+.lab svg{width:100%;max-width:340px;display:block;margin:0 auto}
+.lab-title{font-size:20px;font-weight:700;margin-bottom:4px}
+.lab-sub{color:var(--soft);font-size:15px;margin:0 0 12px}
+.picker{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.tile{width:46px;height:50px;border-radius:9px;border:1.5px solid var(--line);background:var(--surface);cursor:pointer;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.05;padding:0}
+.tile b{font-size:17px} .tile span{font-size:10.5px;color:var(--soft)}
+.tile[aria-pressed="true"]{border-color:var(--u2);background:var(--u2-soft);color:var(--u2)}
+.tile[aria-pressed="true"] span{color:var(--u2)}
+.facts{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-size:15.5px;margin:0}
+.facts dt{color:var(--soft)} .facts dd{margin:0;font-weight:600}
+.toggle{margin-top:12px;border:1.5px solid var(--u2);color:var(--u2);background:transparent;border-radius:10px;padding:7px 14px;cursor:pointer;font-weight:600}
+.toggle[aria-pressed="true"]{background:var(--u2);color:var(--surface)}
+.ionnote{font-size:14.5px;color:var(--soft);margin-top:8px;min-height:22px}
+
+nav.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--paper);border-bottom:1px solid var(--line)}
+nav.tabs .wrap{display:flex;gap:4px;overflow-x:auto;padding-top:8px;padding-bottom:8px}
+nav.tabs a{white-space:nowrap;text-decoration:none;padding:7px 13px;border-radius:9px;font-weight:600;font-size:15px;color:var(--soft)}
+nav.tabs a:hover{background:var(--surface);color:var(--ink)}
+
+.unit{padding:34px 0 10px}
+.unit-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:6px}
+.unit-head p{margin:0;color:var(--soft)}
+.unit.u2 .unit-head h2{color:var(--u2)} .unit.u5 .unit-head h2{color:var(--u5)}
+.topic{display:grid;grid-template-columns:62px minmax(0,1fr);gap:16px;padding:22px 0;border-top:1px solid var(--line)}
+@media (max-width:560px){.topic{grid-template-columns:1fr}}
+.code{width:58px;height:62px;border-radius:10px;display:flex;flex-direction:column;justify-content:center;align-items:center;font-weight:800;font-size:19px}
+.code small{font-size:10.5px;font-weight:600;opacity:.8}
+.u2 .code{background:var(--u2-soft);color:var(--u2)} .u5 .code{background:var(--u5-soft);color:var(--u5)}
+.exam{border-left:4px solid var(--u2);background:var(--u2-soft);padding:9px 13px;border-radius:0 10px 10px 0;margin:10px 0;font-size:16px}
+.u5 .exam{border-color:var(--u5);background:var(--u5-soft)}
+.exam strong{display:block;font-size:13.5px;margin-bottom:2px}
+.eq{font-family:var(--mono);font-size:14.5px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:9px 12px;margin:8px 0;overflow-x:auto;white-space:nowrap}
+.series{display:flex;gap:4px;flex-wrap:wrap;margin:10px 0}
+.series span{padding:6px 10px;border-radius:8px;font-weight:700;font-size:15px;background:var(--u5-soft);color:var(--u5)}
+.series .arrow{background:none;color:var(--soft);font-weight:600;padding:6px 2px}
+ol.steps{padding-left:22px} ol.steps li{margin-bottom:6px}
+
+.myths{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px;margin-top:10px}
+.myth{border:1px solid var(--line);background:var(--surface);border-radius:14px;padding:14px;text-align:left;cursor:pointer;width:100%}
+.myth .q{font-weight:700} .myth .a{display:none;margin-top:8px;color:var(--good);font-size:15.5px}
+.myth .hint{font-size:13px;color:var(--soft);margin-top:8px}
+.myth[aria-expanded="true"] .a{display:block} .myth[aria-expanded="true"] .hint{display:none}
+
+.tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin-top:14px}
+.tool{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px}
+.tool h3{margin-bottom:4px}
+.tool p.sub{color:var(--soft);font-size:15px;margin:0 0 12px}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+select{background:var(--surface);border:1.5px solid var(--line);border-radius:10px;padding:8px 10px;flex:1 1 140px;min-width:0}
+.out{border-radius:12px;padding:12px;background:var(--paper);font-size:15.5px;min-height:60px}
+.out .big{font-size:28px;font-weight:800}
+.out.ok{background:var(--good-soft)} .out.no{background:var(--bad-soft)} .out.warn{background:var(--warn-soft)}
+
+.quiz{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px;margin-top:14px}
+.qhead{display:flex;justify-content:space-between;color:var(--soft);font-size:14.5px;margin-bottom:8px}
+.bar{height:7px;border-radius:99px;background:var(--u2-soft);overflow:hidden;margin-bottom:18px}
+.bar i{display:block;height:100%;width:0;background:var(--u2);transition:width .3s}
+.qtext{font-size:19px;font-weight:700;margin-bottom:14px}
+.qunit{font-size:13.5px;font-weight:700;margin-bottom:4px}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{display:flex;gap:10px;text-align:left;border:1.5px solid var(--line);background:var(--surface);border-radius:12px;padding:11px 13px;cursor:pointer}
+.opt b{color:var(--soft)}
+.opt:hover:not(:disabled){border-color:var(--u2)}
+.opt.right{border-color:var(--good);background:var(--good-soft)} .opt.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.opt:disabled{cursor:default}
+.why{margin-top:12px;font-size:15.5px;padding:10px 12px;border-radius:10px;background:var(--paper)}
+.btn{border:none;border-radius:11px;padding:11px 18px;font-weight:700;cursor:pointer;background:var(--u2);color:#fff;margin-top:14px}
+.btn.ghost{background:transparent;color:var(--u2);border:1.5px solid var(--u2)}
+.result{text-align:center}
+.result .score{font-size:56px;font-weight:800;line-height:1.1}
+.missed{text-align:left;margin-top:14px;font-size:15px}
+.missed li{margin-bottom:6px}
+
+.xq{border-top:1px solid var(--line);padding:12px 0}
+.xq .qq{font-weight:600}
+.xq .mk{color:var(--soft);font-weight:500}
+.reveal{margin-top:6px;border:1.5px solid var(--line);background:var(--surface);border-radius:9px;padding:5px 11px;cursor:pointer;font-size:14.5px;font-weight:600}
+.ans{display:none;margin-top:6px;color:var(--good);font-weight:600}
+.ans.show{display:block}
+footer{color:var(--soft);font-size:14px;padding:40px 0 60px}
+</style>
+</head>
+<body>
+
+<header class="wrap hero">
+  <h1>Chemistry revision: Units 2 and 5</h1>
+  <p class="lede">Atoms, bonding and structures, then reactivity, salts and conservation. Read a topic, cover it, explain it out loud, then test yourself at the bottom.</p>
+  <div class="tests">
+    <span class="test u2">Unit 2: test questions 1–6, 26 marks</span>
+    <span class="test u5">Unit 5: test questions 7–10, 14 marks</span>
+  </div>
+
+  <section class="lab" aria-label="Atom builder">
+    <div>
+      <svg id="atomSvg" viewBox="0 0 240 240" role="img" aria-label="Bohr diagram"></svg>
+    </div>
+    <div>
+      <div class="lab-title">Build an atom</div>
+      <p class="lab-sub">Pick any of the first 20 elements to see its particles and electron shells.</p>
+      <div class="picker" id="picker"></div>
+      <dl class="facts" id="facts"></dl>
+      <button class="toggle" id="ionBtn" aria-pressed="false">Show its ion</button>
+      <div class="ionnote" id="ionNote"></div>
+    </div>
+  </section>
+</header>
+
+<nav class="tabs" aria-label="Sections">
+  <div class="wrap">
+    <a href="#unit2">Unit 2</a>
+    <a href="#unit5">Unit 5</a>
+    <a href="#tools">Practice tools</a>
+    <a href="#quiz">Quiz</a>
+    <a href="#exam">Exam questions</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<section class="unit u2" id="unit2">
+  <div class="unit-head"><h2>Unit 2: Atoms, bonding and structures</h2><p>Test questions 1–6</p></div>
+
+  <div class="topic">
+    <div class="code">2.1<small>Atoms</small></div>
+    <div>
+      <h3>Atomic structure and the periodic table</h3>
+      <div class="tbl"><table>
+        <tr><th>Particle</th><th>Relative charge</th><th>Relative mass</th><th>Where</th></tr>
+        <tr><td>Proton</td><td>+1</td><td>1</td><td>Nucleus</td></tr>
+        <tr><td>Neutron</td><td>0</td><td>1</td><td>Nucleus</td></tr>
+        <tr><td>Electron</td><td>−1</td><td>Almost 0</td><td>Electron shells around the nucleus</td></tr>
+      </table></div>
+      <ul>
+        <li><b>Atomic number</b> (proton number) = number of protons. It decides which element it is.</li>
+        <li><b>Mass number</b> = protons + neutrons.</li>
+        <li>In a neutral atom, <b>electrons = protons</b>, so there is no overall charge.</li>
+        <li><b>Neutrons = mass number − atomic number.</b> Lithium: 7 − 3 = 4 neutrons.</li>
+      </ul>
+      <h4>Electron shells</h4>
+      <p>For the first 20 elements, fill the shells in the pattern <b>2, 8, 8, 2</b>, innermost shell first. Write the number in each shell separated by commas.</p>
+      <p>Boron = 2,3 · Sodium = 2,8,1 · Aluminium = 2,8,3 · Calcium = 2,8,8,2</p>
+      <p>The <b>group number</b> tells you the number of outer-shell electrons (Group 2 → 2 outer electrons). The <b>period</b> (row) tells you the number of shells.</p>
+      <h4>How the model of the atom changed</h4>
+      <p>Dalton: solid spheres → Rutherford: tiny central nucleus → Bohr: electrons in shells. Models change when new evidence appears.</p>
+      <div class="exam"><strong>Exam answer</strong>The atomic model may change in the future because new experimental evidence or improved technology may show something the current model cannot explain.</div>
+    </div>
+  </div>
+
+  <div class="topic">
+    <div class="code">2.2<small>Groups</small></div>
+    <div>
+      <h3>Trends in groups</h3>
+      <h4>Group 1: the alkali metals (Li, Na, K, Rb, Cs)</h4>
+      <ul>
+        <li>Soft (cut with a knife), shiny when freshly cut, low density: Li, Na and K float on water.</li>
+        <li>All have <b>1 electron</b> in the outer shell.</li>
+        <li>Going down the group: <b>melting point decreases</b>, <b>reactivity increases</b>.</li>
+      </ul>
+      <div class="tbl"><table>
+        <tr><th>Element</th><th>Lithium</th><th>Sodium</th><th>Potassium</th><th>Rubidium</th></tr>
+        <tr><td>Melting point / °C</td><td>181</td><td>? (predict about 100)</td><td>64</td><td>39</td></tr>
+      </table></div>
+      <p><b>Predicting a value:</b> sodium sits between lithium and potassium, so predict between 181 °C and 64 °C (e.g. 100 °C). Always write the unit.</p>
+      <div class="eq">Group 1 metal + water → metal hydroxide + hydrogen<br>potassium + water → potassium hydroxide + hydrogen</div>
+      <div class="tbl"><table>
+        <tr><th>Metal</th><th>What you see with water</th></tr>
+        <tr><td>Lithium</td><td>Floats and fizzes steadily, slowly disappears</td></tr>
+        <tr><td>Sodium</td><td>Fizzes quickly, melts into a ball, moves around on the surface</td></tr>
+        <tr><td>Potassium</td><td>More violent than sodium, burns with a lilac flame</td></tr>
+      </table></div>
+      <p><b>Safety precaution (give one):</b> safety screen, eye protection, use a small piece, students stand at a safe distance.</p>
+      <div class="exam"><strong>Why reactivity increases down Group 1</strong>The atoms get bigger, so the outer electron is further from the nucleus. It is attracted less strongly and is lost more easily.</div>
+
+      <h4>Group 7: the halogens (F₂, Cl₂, Br₂, I₂)</h4>
+      <ul>
+        <li>Non-metals with <b>7 outer electrons</b>; they form two-atom (diatomic) molecules.</li>
+        <li>Going down: <b>melting and boiling points increase</b>, colours get darker, <b>reactivity decreases</b> (the opposite of Group 1).</li>
+        <li>Chlorine and bromine form similar molecules because they are in the same group with the same number of outer electrons.</li>
+      </ul>
+      <div class="tbl"><table>
+        <tr><th>Element</th><th>Formula</th><th>State at room temperature</th><th>Colour</th></tr>
+        <tr><td>Fluorine</td><td>F₂</td><td>Gas</td><td>Pale yellow</td></tr>
+        <tr><td>Chlorine</td><td>Cl₂</td><td>Gas</td><td>Yellow-green</td></tr>
+        <tr><td>Bromine</td><td>Br₂</td><td>Liquid</td><td>Red-brown</td></tr>
+        <tr><td>Iodine</td><td>I₂</td><td>Solid</td><td>Dark grey (purple vapour)</td></tr>
+      </table></div>
+      <h4>Group 0 (or 8): the noble gases (He, Ne, Ar)</h4>
+      <p>Unreactive (inert) gases with <b>full outer shells</b>: He 2 · Ne 2,8 · Ar 2,8,8. They don't need to lose, gain or share electrons.</p>
+    </div>
+  </div>
+
+  <div class="topic">
+    <div class="code">2.3<small>Bonding</small></div>
+    <div>
+      <h3>Ions, ionic bonding and covalent bonding</h3>
+      <p>Atoms react to get a <b>full outer shell</b>, like a noble gas.</p>
+      <h4>Making ions</h4>
+      <ul>
+        <li><b>Metals lose</b> outer electrons → <b>positive ions</b> (cations).</li>
+        <li><b>Non-metals gain</b> electrons → <b>negative ions</b> (anions). Their names end in <b>-ide</b>: chloride, oxide.</li>
+        <li>The nucleus does not change. Losing negative electrons leaves more protons than electrons, so the ion is positive.</li>
+      </ul>
+      <div class="tbl"><table>
+        <tr><th>Atom</th><th>Change</th><th>Ion</th><th>Ion structure</th></tr>
+        <tr><td>Sodium 2,8,1</td><td>Loses 1 electron</td><td>Na<sup>+</sup></td><td>2,8</td></tr>
+        <tr><td>Magnesium 2,8,2</td><td>Loses 2 electrons</td><td>Mg<sup>2+</sup></td><td>2,8</td></tr>
+        <tr><td>Oxygen 2,6</td><td>Gains 2 electrons</td><td>O<sup>2−</sup></td><td>2,8</td></tr>
+        <tr><td>Chlorine 2,8,7</td><td>Gains 1 electron</td><td>Cl<sup>−</sup></td><td>2,8,8</td></tr>
+      </table></div>
+      <div class="exam"><strong>Exam answer</strong>An ionic bond is the strong electrostatic attraction between oppositely charged ions.</div>
+      <p>Opposite charges attract; like charges repel. Two iodide ions (I<sup>−</sup>) are both negative, so they repel and cannot form an ionic bond.</p>
+      <p><b>Writing formulas:</b> make the charges balance. NaCl (+1, −1) · MgO (+2, −2) · CaCl₂ (+2, 2 × −1) · Al₂O₃ (2 × +3 = +6, 3 × −2 = −6).</p>
+
+      <h4>Covalent bonding</h4>
+      <div class="exam"><strong>Exam answer (2 marks)</strong>A covalent bond is a pair of electrons [1] shared between two atoms [1].</div>
+      <ul>
+        <li>Covalent bonds form between <b>non-metal</b> atoms.</li>
+        <li>A <b>molecule</b> is two or more atoms joined by covalent bonds. The atoms can be the same (O₂, Cl₂) or different (H₂O, CH₄).</li>
+        <li>In dot-and-cross diagrams, dots and crosses are outer electrons. The symbols only show which atom each electron came from. One shared pair = one single bond.</li>
+      </ul>
+      <div class="tbl"><table>
+        <tr><th>Molecule</th><th>Single covalent bonds</th><th>Lone pairs on the central atom</th></tr>
+        <tr><td>Water H₂O</td><td>2</td><td>2 on oxygen</td></tr>
+        <tr><td>Ammonia NH₃</td><td>3</td><td>1 on nitrogen</td></tr>
+        <tr><td>Methane CH₄</td><td>4</td><td>0 on carbon</td></tr>
+      </table></div>
+    </div>
+  </div>
+
+  <div class="topic">
+    <div class="code">2.4<small>Structure</small></div>
+    <div>
+      <h3>Simple and giant structures</h3>
+      <div class="tbl"><table>
+        <tr><th></th><th>Giant ionic</th><th>Simple molecular</th><th>Giant covalent</th></tr>
+        <tr><td><b>Examples</b></td><td>Sodium chloride, magnesium oxide</td><td>Water, oxygen, CO₂, CH₄, NH₃</td><td>Diamond, graphite</td></tr>
+        <tr><td><b>Held together by</b></td><td>Strong electrostatic attraction between ions, in all directions</td><td>Strong covalent bonds inside molecules; <b>weak forces between molecules</b></td><td>Many strong covalent bonds throughout</td></tr>
+        <tr><td><b>Melting point</b></td><td>High</td><td>Low: only the weak forces between molecules are overcome</td><td>Very high</td></tr>
+        <tr><td><b>Conducts electricity?</b></td><td>Not as a solid (ions fixed). Yes when molten or dissolved (ions move)</td><td>No (no charged particles that can move)</td><td>Diamond no; graphite yes</td></tr>
+      </table></div>
+      <p>The formula NaCl shows a <b>1 : 1 ratio</b> of ions in a giant lattice, not a small molecule.</p>
+      <div class="tbl"><table>
+        <tr><th></th><th>Graphite</th><th>Diamond</th></tr>
+        <tr><td>Bonds per carbon</td><td>3</td><td>4</td></tr>
+        <tr><td>Arrangement</td><td>Flat hexagonal layers</td><td>Rigid 3D network</td></tr>
+        <tr><td>Hardness</td><td>Soft and slippery: layers slide</td><td>Very hard</td></tr>
+        <tr><td>Conducts?</td><td>Yes: delocalised electrons move along the layers</td><td>No: no mobile electrons</td></tr>
+      </table></div>
+      <div class="exam"><strong>Exam answer</strong>A lot of energy is needed to separate graphite into atoms because many strong covalent bonds [1] must be broken [1]. (The weak forces between layers only explain why it is slippery.)</div>
+    </div>
+  </div>
+
+  <div class="topic">
+    <div class="code">!<small>Traps</small></div>
+    <div>
+      <h3>Common mistakes in Unit 2</h3>
+      <p class="lab-sub">Tap a card to see the correct idea.</p>
+      <div class="myths" data-myths="u2"></div>
+    </div>
+  </div>
+</section>
+
+<section class="unit u5" id="unit5">
+  <div class="unit-head"><h2>Unit 5: Reactivity, salts and conservation</h2><p>Test questions 7–10</p></div>
+
+  <div class="topic">
+    <div class="code">5.1<small>Reactivity</small></div>
+    <div>
+      <h3>The reactivity series and displacement</h3>
+      <div class="series" aria-label="Reactivity series, most to least reactive">
+        <span>K</span><span>Na</span><span>Ca</span><span>Mg</span><span>Zn</span><span>Fe</span><span>Cu</span><span>Ag</span><span>Au</span>
+      </div>
+      <p>Most reactive (potassium) on the left → least reactive (gold) on the right. The order comes from how strongly metals react with oxygen, water and dilute acids.</p>
+      <div class="exam"><strong>Rule</strong>A more reactive metal displaces a less reactive metal from a solution of its salt.</div>
+      <p>The added metal takes the place of the metal in the salt. The salt ending (sulfate, nitrate) stays the same.</p>
+      <div class="eq">zinc + copper sulfate → zinc sulfate + copper<br>magnesium + zinc sulfate → magnesium sulfate + zinc<br>copper + silver nitrate → copper nitrate + silver</div>
+      <p><b>Iron in copper sulfate:</b> the blue solution turns pale green and reddish-brown copper coats the iron.</p>
+      <div class="exam"><strong>"No reaction" answer</strong>Silver is less reactive than magnesium, so it cannot displace magnesium from magnesium nitrate solution. Always compare the two metals.</div>
+      <p><b>Displacement from oxides:</b> carbon is more reactive than iron and zinc, so it can take oxygen from their oxides (the blast furnace: iron oxide + carbon → iron + carbon dioxide). In the thermite reaction, aluminium displaces iron from iron oxide.</p>
+    </div>
+  </div>
+
+  <div class="topic">
+    <div class="code">5.3<small>Salts</small></div>
+    <div>
+      <h3>Acids, salts and gas tests</h3>
+      <div class="tbl"><table>
+        <tr><th>Acid</th><th>Formula</th><th>Makes salts called</th><th>Example</th></tr>
+        <tr><td>Hydrochloric acid</td><td>HCl</td><td>chlorides</td><td>zinc chloride</td></tr>
+        <tr><td>Sulfuric acid</td><td>H₂SO₄</td><td>sulfates</td><td>copper sulfate</td></tr>
+        <tr><td>Nitric acid</td><td>HNO₃</td><td>nitrates</td><td>sodium nitrate</td></tr>
+      </table></div>
+      <h4>The four general equations</h4>
+      <div class="eq">metal + acid → salt + hydrogen<br>metal oxide + acid → salt + water<br>metal carbonate + acid → salt + water + carbon dioxide<br>acid + alkali → salt + water</div>
+      <p>Examples: zinc + sulfuric acid → zinc sulfate + hydrogen · copper oxide + sulfuric acid → copper sulfate + water · hydrochloric acid + sodium hydroxide → sodium chloride + water.</p>
+      <div class="tbl"><table>
+        <tr><th>Gas</th><th>Made by</th><th>Test</th></tr>
+        <tr><td>Hydrogen</td><td>Reactive metal + dilute acid</td><td>Lighted splint gives a <b>squeaky pop</b></td></tr>
+        <tr><td>Carbon dioxide</td><td>Carbonate + acid</td><td>Turns <b>limewater cloudy (milky)</b></td></tr>
+      </table></div>
+      <p>A <b>base</b> neutralises an acid (metal oxides and hydroxides). An <b>alkali</b> is a base that dissolves in water. All alkalis are bases, but not all bases are alkalis.</p>
+      <p>Acid rain and ocean acidification damage things made of calcium carbonate, such as limestone buildings and coral.</p>
+    </div>
+  </div>
+
+  <div class="topic">
+    <div class="code">5.4<small>Crystals</small></div>
+    <div>
+      <h3>Making copper sulfate crystals</h3>
+      <p>Start with <b>excess</b> insoluble copper carbonate (or copper oxide) and dilute <b>sulfuric acid</b>.</p>
+      <ol class="steps">
+        <li>Add the solid a little at a time until some is left over. The leftover solid shows that all the acid has reacted.</li>
+        <li><b>Filter</b>. The excess solid stays on the filter paper (the <b>residue</b>). The copper sulfate solution passes through (the <b>filtrate</b>).</li>
+        <li><b>Gently heat</b> the filtrate to evaporate some water. Do not heat to dryness.</li>
+        <li><b>Leave to cool</b> so crystals form (<b>crystallisation</b>).</li>
+      </ol>
+      <div class="exam"><strong>Exam answer (2 marks)</strong>Gently heat to evaporate some water and concentrate the solution [1]; leave it to cool so crystals form [1].</div>
+      <p><b>Acid + alkali (soluble reactants):</b> add alkali until universal indicator turns green (pH 7), add charcoal to remove the indicator colour, filter, then crystallise.</p>
+      <p>Crystallisation is a <b>physical change</b>; it does not make a new substance.</p>
+    </div>
+  </div>
+
+  <div class="topic">
+    <div class="code">5.5<small>Conserve</small></div>
+    <div>
+      <h3>Conservation of mass and energy</h3>
+      <p>In a reaction, bonds break and atoms <b>rearrange</b>. Atoms are <b>never created or destroyed</b>.</p>
+      <div class="exam"><strong>Law of conservation of mass</strong>Total mass of reactants = total mass of products (in a closed system).</div>
+      <div class="tbl"><table>
+        <tr><th>Situation</th><th>Mass on the balance</th><th>Why</th></tr>
+        <tr><td>Reaction in a sealed flask</td><td>Stays the same</td><td>Nothing enters or leaves; atoms are rearranged</td></tr>
+        <tr><td>Carbonate + acid in an open flask</td><td>Goes down</td><td>Carbon dioxide gas escapes into the air</td></tr>
+        <tr><td>Burning magnesium in a crucible</td><td>Goes up</td><td>Oxygen from the air joins the magnesium to make magnesium oxide</td></tr>
+      </table></div>
+      <p><b>Worked example:</b> an open flask weighs 103 g before and 100 g after. The 3 g is carbon dioxide that escaped. Counting the gas, the total is still 103 g.</p>
+      <div class="exam"><strong>Law of conservation of energy</strong>Energy cannot be created or destroyed, only transferred.</div>
+      <div class="tbl"><table>
+        <tr><th>Type</th><th>Energy</th><th>Temperature</th><th>Example</th></tr>
+        <tr><td>Exothermic</td><td>Gives out heat to the surroundings</td><td>Goes up</td><td>Zinc + sulfuric acid</td></tr>
+        <tr><td>Endothermic</td><td>Takes in heat from the surroundings</td><td>Goes down</td><td>Sodium carbonate + ethanoic acid</td></tr>
+      </table></div>
+      <p><b>To compare energy changes, measure the temperature change:</b> start temperature, then the highest (warming) or lowest (cooling) temperature. A rise of 8 °C is a bigger change than a fall of 5 °C. A final temperature alone, or the reaction time, is not enough.</p>
+    </div>
+  </div>
+
+  <div class="topic">
+    <div class="code">!<small>Traps</small></div>
+    <div>
+      <h3>Common mistakes in Unit 5</h3>
+      <p class="lab-sub">Tap a card to see the correct idea.</p>
+      <div class="myths" data-myths="u5"></div>
+    </div>
+  </div>
+</section>
+
+<section class="unit" id="tools">
+  <div class="unit-head"><h2>Practice tools</h2><p>Try a combination, predict the answer, then check.</p></div>
+  <div class="tools">
+    <div class="tool">
+      <h3>Ionic formula builder</h3>
+      <p class="sub">Pick a metal ion and a non-metal ion. The charges must balance.</p>
+      <div class="row"><select id="cat" aria-label="Positive ion"></select><select id="ani" aria-label="Negative ion"></select></div>
+      <div class="out" id="ionOut"></div>
+    </div>
+    <div class="tool">
+      <h3>Will it displace?</h3>
+      <p class="sub">Add a metal to a salt solution.</p>
+      <div class="row"><select id="dMetal" aria-label="Metal added"></select><select id="dSalt" aria-label="Salt solution"></select></div>
+      <div class="out" id="dOut"></div>
+    </div>
+    <div class="tool">
+      <h3>Salt maker</h3>
+      <p class="sub">Choose an acid and what you react it with.</p>
+      <div class="row"><select id="sAcid" aria-label="Acid"></select><select id="sType" aria-label="Reactant type"></select><select id="sMetal" aria-label="Metal"></select></div>
+      <div class="out" id="sOut"></div>
+    </div>
+  </div>
+</section>
+
+<section class="unit" id="quiz">
+  <div class="unit-head"><h2>Quick quiz</h2><p>28 questions, marked as you go.</p></div>
+  <div class="quiz" id="quizBox"></div>
+</section>
+
+<section class="unit" id="exam">
+  <div class="unit-head"><h2>Exam-style questions</h2><p>Write your answer first, then reveal the mark scheme.</p></div>
+  <h3 style="color:var(--u2);margin-top:14px">Unit 2 self-check (16 marks)</h3>
+  <div id="x2"></div>
+  <h3 style="color:var(--u5);margin-top:26px">Unit 5 self-check (14 marks)</h3>
+  <div id="x5"></div>
+</section>
+
+</main>
+<footer class="wrap">Based on the Year 8 Unit 2 and Unit 5 revision guides and summary notes.</footer>
+
+<script>
+(function(){
+"use strict";
+var $=function(id){return document.getElementById(id);};
+function esc(s){return String(s).replace(/[&<>\"]/g,function(c){return {"&":"&amp;","<":"&lt;", ">":"&gt;","\"":"&quot;"}[c];});}
+
+var EL=[
+ [1,"H","Hydrogen",1,null,"h"],[2,"He","Helium",4,0,"noble"],[3,"Li","Lithium",7,1,"metal"],[4,"Be","Beryllium",9,2,"metal"],
+ [5,"B","Boron",11,3,"cov"],[6,"C","Carbon",12,4,"cov"],[7,"N","Nitrogen",14,5,"non"],[8,"O","Oxygen",16,6,"non"],
+ [9,"F","Fluorine",19,7,"non"],[10,"Ne","Neon",20,0,"noble"],[11,"Na","Sodium",23,1,"metal"],[12,"Mg","Magnesium",24,2,"metal"],
+ [13,"Al","Aluminium",27,3,"metal"],[14,"Si","Silicon",28,4,"cov"],[15,"P","Phosphorus",31,5,"non"],[16,"S","Sulfur",32,6,"non"],
+ [17,"Cl","Chlorine",35,7,"non"],[18,"Ar","Argon",40,0,"noble"],[19,"K","Potassium",39,1,"metal"],[20,"Ca","Calcium",40,2,"metal"]
+];
+var IDE={N:"nitride",O:"oxide",F:"fluoride",P:"phosphide",S:"sulfide",Cl:"chloride"};
+function shells(n){var cap=[2,8,8,2],out=[];for(var i=0;i<cap.length&&n>0;i++){var k=Math.min(cap[i],n);out.push(k);n-=k;}return out;}
+function sup(q){if(q===0)return "";var a=Math.abs(q);return (a>1?a:"")+(q>0?"+":"−");}
+var cur=11, showIon=false;
+
+function ionOf(e){
+  var z=e[0],g=e[4],t=e[5],sh=shells(z);
+  if(t==="metal") return {q:g,sh:sh.slice(0,-1),text:"Loses "+g+" electron"+(g>1?"s":"")+" to form the "+e[2].toLowerCase()+" ion, "+e[1]+"<sup>"+sup(g)+"</sup>."};
+  if(t==="non"){var gain=8-g,s2=sh.slice();s2[s2.length-1]=8;return {q:-gain,sh:s2,text:"Gains "+gain+" electron"+(gain>1?"s":"")+" to form the "+IDE[e[1]]+" ion, "+e[1]+"<sup>"+sup(-gain)+"</sup>."};}
+  if(t==="noble") return {q:0,sh:sh,text:"Full outer shell already, so it does not form ions."};
+  return {q:0,sh:sh,text:e[2]+" usually shares electrons in covalent bonds instead of forming ions."};
+}
+function drawAtom(){
+  var e=EL[cur-1],sh=shells(e[0]),ion=ionOf(e),useIon=showIon&&ion.q!==0,s=useIon?ion.sh:sh;
+  var svg=['<circle cx="120" cy="120" r="24" fill="var(--nucleus)" stroke="var(--u2)" stroke-width="2"/>',
+    '<text x="120" y="117" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink)">'+e[0]+'p</text>',
+    '<text x="120" y="132" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink)">'+(e[3]-e[0])+'n</text>'];
+  var R=[44,66,88,110];
+  s.forEach(function(n,i){
+    svg.push('<circle cx="120" cy="120" r="'+R[i]+'" fill="none" stroke="var(--line)" stroke-width="2"/>');
+    for(var k=0;k<n;k++){var a=(k/n)*2*Math.PI-Math.PI/2+(i*0.4);
+      svg.push('<circle cx="'+(120+R[i]*Math.cos(a)).toFixed(1)+'" cy="'+(120+R[i]*Math.sin(a)).toFixed(1)+'" r="5.2" fill="var(--u2)"/>');}
+  });
+  if(useIon){svg.push('<text x="224" y="26" text-anchor="end" font-size="22" font-weight="800" fill="var(--u2)">'+e[1]+sup(ion.q)+'</text>');}
+  $("atomSvg").innerHTML=svg.join("");
+  var electrons=useIon?e[0]-ion.q:e[0];
+  $("facts").innerHTML=
+    "<dt>Element</dt><dd>"+e[2]+" ("+e[1]+")</dd>"+
+    "<dt>Atomic number</dt><dd>"+e[0]+"</dd><dt>Mass number</dt><dd>"+e[3]+(e[1]==="Cl"?" (35.5 in most tables)":"")+"</dd>"+
+    "<dt>Protons</dt><dd>"+e[0]+"</dd><dt>Neutrons</dt><dd>"+e[3]+" − "+e[0]+" = "+(e[3]-e[0])+"</dd>"+
+    "<dt>Electrons</dt><dd>"+electrons+"</dd><dt>Shells</dt><dd>"+s.join(",")+"</dd>"+
+    "<dt>Group</dt><dd>"+(e[4]===null?"special (usually placed above Group 1)":e[4]===0?"0 (noble gases)":e[4])+"</dd>";
+  $("ionNote").innerHTML=showIon?ion.text:"";
+  $("ionBtn").textContent=showIon?"Show the atom":"Show its ion";
+  $("ionBtn").setAttribute("aria-pressed",showIon?"true":"false");
+}
+var pk=$("picker");
+EL.forEach(function(e){var b=document.createElement("button");b.className="tile";b.innerHTML="<b>"+e[1]+"</b><span>"+e[0]+"</span>";
+  b.setAttribute("aria-label",e[2]);b.setAttribute("aria-pressed",e[0]===cur?"true":"false");
+  b.onclick=function(){cur=e[0];Array.prototype.forEach.call(pk.children,function(c){c.setAttribute("aria-pressed","false");});b.setAttribute("aria-pressed","true");drawAtom();};
+  pk.appendChild(b);});
+$("ionBtn").onclick=function(){showIon=!showIon;drawAtom();};
+drawAtom();
+
+var MYTHS={u2:[
+ ["Losing electrons makes an atom negative.","Electrons are negative. Losing them leaves more protons than electrons, so the ion is positive (Na⁺ has 11 protons and 10 electrons)."],
+ ["NaCl is a small molecule, like HCl.","NaCl is a giant ionic lattice. The formula only shows the 1 : 1 ratio of Na⁺ to Cl⁻ ions."],
+ ["Ionic bonding is a magnetic force.","It is an electrostatic attraction between opposite electric charges, not magnetism."],
+ ["O₂ and Cl₂ can’t be molecules because the atoms are the same.","Any two or more atoms joined by covalent bonds make a molecule, whether the atoms are the same or different."],
+ ["Reactivity increases down every group.","It increases down Group 1 but decreases down Group 7."],
+ ["Melting water breaks its covalent bonds.","Melting and boiling only overcome the weak forces between molecules. The O–H bonds stay intact."]
+],u5:[
+ ["Mass is lost when a gas is made.","Mass is conserved. The gas escapes into the air, so the balance can’t measure it. In a sealed flask the mass stays the same."],
+ ["Burning magnesium creates new mass.","Oxygen atoms from the air join the magnesium, so the solid gets heavier."],
+ ["The reactivity series only contains metals.","Carbon and hydrogen are often placed in it. Carbon can take oxygen from iron and zinc oxides."],
+ ["Crystallisation is a chemical reaction.","It is a physical change: water evaporates and the dissolved salt forms crystals. No new substance is made."],
+ ["A longer reaction time means a faster reaction.","A shorter time means a faster rate. Rate and time are opposites."],
+ ["All bases are alkalis.","Only bases that dissolve in water are alkalis. Copper oxide is a base but not an alkali."]
+]};
+document.querySelectorAll("[data-myths]").forEach(function(box){
+  MYTHS[box.getAttribute("data-myths")].forEach(function(m){
+    var b=document.createElement("button");b.className="myth";b.setAttribute("aria-expanded","false");
+    b.innerHTML='<div class="q">“'+esc(m[0])+'”</div><div class="a">'+esc(m[1])+'</div><div class="hint">Tap to check</div>';
+    b.onclick=function(){b.setAttribute("aria-expanded",b.getAttribute("aria-expanded")==="true"?"false":"true");};
+    box.appendChild(b);});
+});
+
+var CAT=[["Li","lithium",1],["Na","sodium",1],["K","potassium",1],["Mg","magnesium",2],["Ca","calcium",2],["Al","aluminium",3]];
+var ANI=[["F","fluoride",1],["Cl","chloride",1],["Br","bromide",1],["I","iodide",1],["O","oxide",2],["S","sulfide",2],["N","nitride",3]];
+function fill(sel,arr,fmt){arr.forEach(function(a,i){var o=document.createElement("option");o.value=i;o.innerHTML=fmt(a);sel.appendChild(o);});}
+fill($("cat"),CAT,function(a){return a[1]+" ion, "+a[0]+(a[2]>1?a[2]:"")+"+";});
+fill($("ani"),ANI,function(a){return a[1]+" ion, "+a[0]+(a[2]>1?a[2]:"")+"−";});
+$("ani").value=4;
+function gcd(a,b){return b?gcd(b,a%b):a;}
+function ionic(){
+  var c=CAT[+$("cat").value],a=ANI[+$("ani").value],L=c[2]*a[2]/gcd(c[2],a[2]),nc=L/c[2],na=L/a[2];
+  var f=c[0]+(nc>1?"<sub>"+nc+"</sub>":"")+a[0]+(na>1?"<sub>"+na+"</sub>":"");
+  $("ionOut").className="out ok";
+  $("ionOut").innerHTML='<div class="big">'+f+'</div><div><b>'+c[1]+' '+a[1]+'</b></div>'+
+   '<div>'+nc+' × (+'+c[2]+') = +'+L+' and '+na+' × (−'+a[2]+') = −'+L+'. The charges cancel, so the compound is neutral.</div>';
+}
+$("cat").onchange=ionic;$("ani").onchange=ionic;ionic();
+
+var SER=["potassium","sodium","calcium","magnesium","zinc","iron","copper","silver","gold"];
+var ADD=["magnesium","zinc","iron","copper","silver","gold","sodium"];
+var SALTS=[["magnesium","sulfate"],["zinc","sulfate"],["iron","sulfate"],["copper","sulfate"],["magnesium","nitrate"],["zinc","nitrate"],["copper","nitrate"],["silver","nitrate"]];
+fill($("dMetal"),ADD,function(a){return a;});
+fill($("dSalt"),SALTS,function(s){return s[0]+" "+s[1]+" solution";});
+$("dMetal").value=2;$("dSalt").value=3;
+var OBS={"iron|copper":"The blue solution turns pale green and reddish-brown copper coats the iron.",
+ "zinc|copper":"The blue colour fades and reddish-brown copper forms on the zinc.",
+ "magnesium|copper":"The blue colour fades, reddish-brown copper forms and the mixture warms up.",
+ "copper|silver":"Shiny silver crystals grow on the copper and the colourless solution turns blue."};
+function displace(){
+  var m=ADD[+$("dMetal").value],s=SALTS[+$("dSalt").value],o=$("dOut");
+  if(m==="sodium"){o.className="out warn";o.innerHTML="<b>Not used for displacement.</b> Sodium (like potassium and calcium) reacts with the water in the solution first, so these metals are not used in displacement experiments.";return;}
+  if(m===s[0]){o.className="out";o.innerHTML="<b>No reaction.</b> It is the same metal, so there is nothing to displace.";return;}
+  var mi=SER.indexOf(m),si=SER.indexOf(s[0]);
+  if(mi<si){
+    o.className="out ok";
+    o.innerHTML="<b>Displacement happens.</b> "+m.charAt(0).toUpperCase()+m.slice(1)+" is more reactive than "+s[0]+".<div class='eq' style='margin:8px 0 6px'>"+m+" + "+s[0]+" "+s[1]+" → "+m+" "+s[1]+" + "+s[0]+"</div>"+(OBS[m+"|"+s[0]]||("A layer of "+s[0]+" forms on the "+m+"."));
+  }else{
+    o.className="out no";
+    o.innerHTML="<b>No reaction.</b> "+m.charAt(0).toUpperCase()+m.slice(1)+" is less reactive than "+s[0]+", so it cannot displace "+s[0]+" from "+s[0]+" "+s[1]+" solution.";
+  }
+}
+$("dMetal").onchange=displace;$("dSalt").onchange=displace;displace();
+
+var ACIDS=[["hydrochloric acid","chloride"],["sulfuric acid","sulfate"],["nitric acid","nitrate"]];
+var TYPES=["metal","metal oxide","metal hydroxide","metal carbonate"];
+var MET=["magnesium","zinc","iron","copper","calcium","sodium"];
+fill($("sAcid"),ACIDS,function(a){return a[0];});
+fill($("sType"),TYPES,function(a){return a;});
+fill($("sMetal"),MET,function(a){return a;});
+$("sAcid").value=1;$("sType").value=3;$("sMetal").value=3;
+function salt(){
+  var A=ACIDS[+$("sAcid").value],t=TYPES[+$("sType").value],m=MET[+$("sMetal").value],o=$("sOut"),sn=m+" "+A[1];
+  var react=(t==="metal"?m:m+" "+t.replace("metal ",""));
+  if(t==="metal"){
+    if(m==="copper"){o.className="out no";o.innerHTML="<b>No reaction.</b> Copper is too unreactive to react with dilute acids. Use copper oxide or copper carbonate instead.";return;}
+    if(m==="sodium"){o.className="out warn";o.innerHTML="<b>Too dangerous.</b> Sodium reacts violently with acids, so it is never done in school.";return;}
+    if(A[1]==="nitrate"){o.className="out warn";o.innerHTML="<b>Not used in this unit.</b> Metals with nitric acid do not give hydrogen cleanly. Use hydrochloric or sulfuric acid.";return;}
+    o.className="out ok";
+    o.innerHTML="<div class='eq' style='margin:0 0 6px'>"+react+" + "+A[0]+" → "+sn+" + hydrogen</div><b>Gas test:</b> a lighted splint gives a squeaky pop.<br><b>Method:</b> add excess metal, filter, evaporate some water, leave to crystallise.";return;
+  }
+  if(t==="metal hydroxide"){
+    var alk=(m==="sodium"||m==="calcium");
+    o.className="out ok";
+    o.innerHTML="<div class='eq' style='margin:0 0 6px'>"+A[0]+" + "+react+" → "+sn+" + water</div>"+(alk?"<b>"+react+" dissolves in water, so it is an alkali.</b> This is neutralisation. Use an indicator to find the neutral point (green, pH 7), then crystallise.":"<b>"+react+" is an insoluble base, not an alkali.</b> Add it in excess, filter, then crystallise.");return;
+  }
+  if(t==="metal oxide"){
+    o.className="out ok";
+    o.innerHTML="<div class='eq' style='margin:0 0 6px'>"+react+" + "+A[0]+" → "+sn+" + water</div>A metal oxide is a base. No gas is made."+(m==="copper"&&A[1]==="sulfate"?" This is the classic way to make blue copper sulfate crystals.":"");return;
+  }
+  var note=(m==="calcium"&&A[1]==="sulfate")?"<br><b>Watch out:</b> calcium sulfate is insoluble, so it coats the carbonate and the reaction soon stops.":"";
+  var meth=(m==="sodium")?"Sodium carbonate dissolves, so use an indicator to find the neutral point, then crystallise.":"Add excess carbonate until the fizzing stops, filter, evaporate some water, then leave to crystallise.";
+  o.className="out ok";
+  o.innerHTML="<div class='eq' style='margin:0 0 6px'>"+react+" + "+A[0]+" → "+sn+" + water + carbon dioxide</div><b>Gas test:</b> carbon dioxide turns limewater cloudy (milky).<br><b>Method:</b> "+meth+note;
+}
+["sAcid","sType","sMetal"].forEach(function(id){$(id).onchange=salt;});salt();
+
+var Q=[
+ ["2","Which particle has a negative charge?",["electron","proton","neutron","nucleus"],"Electrons are −1; protons +1; neutrons 0."],
+ ["2","An atom has atomic number 11 and mass number 23. How many neutrons does it have?",["12","11","23","34"],"Neutrons = mass number − atomic number = 23 − 11 = 12."],
+ ["2","What is the electronic structure of aluminium (atomic number 13)?",["2,8,3","2,8,2","2,3,8","3,8,2"],"Fill 2, then 8, then the remaining 3."],
+ ["2","How many outer-shell electrons does a Group 2 atom have?",["2","1","3","8"],"The group number equals the number of outer electrons."],
+ ["2","Going down Group 1, the melting point…",["decreases","increases","stays the same","goes up then down"],"Li 181 °C, K 64 °C, Rb 39 °C."],
+ ["2","Complete: potassium + water → …",["potassium hydroxide + hydrogen","potassium oxide + hydrogen","potassium hydroxide + oxygen","potassium oxide + water"],"Group 1 metal + water → metal hydroxide + hydrogen."],
+ ["2","Which halogen is a solid at room temperature?",["iodine","chlorine","bromine","fluorine"],"F₂ and Cl₂ are gases, Br₂ is a liquid, I₂ is a solid."],
+ ["2","Why are noble gases unreactive?",["They have full outer shells","They have no electrons","They are metals","Their nucleus has no protons"],"A full outer shell means no need to lose, gain or share electrons."],
+ ["2","How does a magnesium atom form Mg²⁺?",["It loses 2 electrons","It gains 2 electrons","It loses 2 protons","It gains 2 protons"],"Losing two negative electrons leaves a 2+ charge. The nucleus doesn't change."],
+ ["2","What is an ionic bond?",["The strong electrostatic attraction between oppositely charged ions","A shared pair of electrons","A magnetic force between atoms","A weak force between molecules"],"Learn this definition word for word."],
+ ["2","What is the formula of aluminium oxide?",["Al₂O₃","AlO","Al₃O₂","AlO₃"],"2 × (+3) = +6 balances 3 × (−2) = −6."],
+ ["2","What is a covalent bond?",["A pair of electrons shared between two atoms","Electrons transferred from a metal to a non-metal","An attraction between ions","Electrons that are free to move"],"Two marks: a pair of electrons + shared."],
+ ["2","How many single covalent bonds are in a water molecule?",["2","1","3","4"],"Oxygen shares one pair with each of the two hydrogen atoms."],
+ ["2","Why does water have a low boiling point?",["Only weak forces between molecules are overcome","Its covalent bonds break easily","Its ions are free to move","It is a giant structure"],"Boiling separates molecules; the covalent bonds stay intact."],
+ ["2","Why doesn’t solid sodium chloride conduct electricity?",["Its ions are fixed and cannot move","It has no charged particles","It has delocalised electrons","It is made of small molecules"],"When molten or dissolved, the ions can move and it conducts."],
+ ["2","Why does graphite conduct electricity?",["It has delocalised electrons that can move","It has ions that can move","Each carbon forms 4 bonds","Its layers slide over each other"],"Each carbon forms 3 bonds, leaving one electron free to move along the layers."],
+ ["5","Which metal will displace copper from copper sulfate solution?",["zinc","silver","gold","copper"],"Zinc is above copper in the reactivity series."],
+ ["5","Copper does not react with zinc sulfate solution because…",["copper is less reactive than zinc","copper is more reactive than zinc","zinc sulfate is not a salt","copper is a non-metal"],"A less reactive metal cannot displace a more reactive one."],
+ ["5","Which acid is used to make zinc chloride?",["hydrochloric acid","sulfuric acid","nitric acid","ethanoic acid"],"Hydrochloric acid → chlorides."],
+ ["5","Which gas forms when copper carbonate reacts with an acid?",["carbon dioxide","hydrogen","oxygen","chlorine"],"Carbonate + acid → salt + water + carbon dioxide."],
+ ["5","What is the test for hydrogen?",["A lighted splint gives a squeaky pop","Limewater turns cloudy","A glowing splint relights","Damp litmus paper is bleached"],"Limewater is the test for carbon dioxide."],
+ ["5","Which process removes the excess insoluble solid?",["filtration","evaporation","crystallisation","distillation"],"The excess solid is the residue on the filter paper."],
+ ["5","A sealed flask weighs 104 g before a reaction. What does it weigh afterwards?",["104 g","less than 104 g","more than 104 g","0 g"],"Nothing enters or leaves; atoms are only rearranged."],
+ ["5","An open flask loses mass during a carbonate and acid reaction because…",["carbon dioxide escapes","atoms are destroyed","the flask gets lighter","the acid turns into energy"],"Mass isn’t destroyed; the gas leaves the flask."],
+ ["5","A reaction mixture cools down. What type of reaction is it?",["endothermic","exothermic","neutralisation","combustion"],"Endothermic reactions take in heat from the surroundings."],
+ ["5","To compare the energy changes of two reactions, measure…",["the temperature change","the final temperature only","the reaction time","the mass of the beaker"],"Start temperature to the highest or lowest temperature."],
+ ["5","What is an alkali?",["A base that dissolves in water","Any acid","An insoluble metal oxide","A salt"],"All alkalis are bases, but not all bases dissolve."],
+ ["5","Magnesium gains mass when it burns in a crucible because…",["oxygen from the air joins the magnesium","mass is created by the heat","the crucible melts","magnesium absorbs water"],"magnesium + oxygen → magnesium oxide."]
+];
+var order,idx,score,missed,answered;
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+function startQuiz(list){order=list||shuffle(Q.map(function(_,i){return i;}));idx=0;score=0;missed=[];renderQ();}
+function renderQ(){
+  answered=false;var q=Q[order[idx]],box=$("quizBox"),opts=shuffle(q[2]);
+  var col=q[0]==="2"?"var(--u2)":"var(--u5)";
+  box.innerHTML='<div class="qhead"><span>Question '+(idx+1)+' of '+order.length+'</span><span>'+score+' correct</span></div>'+
+    '<div class="bar"><i style="width:'+(idx/order.length*100)+'%"></i></div>'+
+    '<div class="qunit" style="color:'+col+'">Unit '+q[0]+'</div><div class="qtext">'+esc(q[1])+'</div><div class="opts" id="opts"></div><div id="after"></div>';
+  opts.forEach(function(o,i){var b=document.createElement("button");b.className="opt";b.innerHTML="<b>"+"ABCD"[i]+"</b><span>"+esc(o)+"</span>";
+    b.onclick=function(){choose(b,o,q);};$("opts").appendChild(b);});
+}
+function choose(btn,o,q){
+  if(answered)return;answered=true;var ok=o===q[2][0];
+  Array.prototype.forEach.call($("opts").children,function(b){b.disabled=true;if(b.textContent.slice(1)===q[2][0])b.classList.add("right");});
+  if(ok)score++;else{btn.classList.add("wrong");missed.push(order[idx]);}
+  $("after").innerHTML='<div class="why"><b>'+(ok?"Correct.":"Not quite. Answer: "+esc(q[2][0])+".")+'</b> '+esc(q[3])+'</div>'+
+    '<button class="btn" id="nextQ">'+(idx<order.length-1?"Next question":"See my score")+'</button>';
+  $("nextQ").onclick=function(){idx++;if(idx>=order.length)finish();else renderQ();};$("nextQ").focus();
+}
+function finish(){
+  var pct=Math.round(score/order.length*100),box=$("quizBox");
+  var list=missed.map(function(i){return "<li><b>Unit "+Q[i][0]+":</b> "+esc(Q[i][1])+" <i>("+esc(Q[i][2][0])+")</i></li>";}).join("");
+  box.innerHTML='<div class="result"><div class="score" style="color:'+(pct>=80?"var(--good)":pct>=50?"var(--u2)":"var(--bad)")+'">'+score+' / '+order.length+'</div>'+
+    '<p>'+(pct===100?"Every question right.":pct>=80?"Strong. Review the few you missed.":pct>=50?"Getting there. Re-read the topics behind the questions below.":"Go back through the notes, then try again.")+'</p></div>'+
+    (missed.length?'<ol class="missed">'+list+'</ol>':"")+
+    '<div style="text-align:center">'+(missed.length?'<button class="btn ghost" id="retry">Retry the ones I missed</button> ':'')+'<button class="btn" id="again">Start again</button></div>';
+  if(missed.length)$("retry").onclick=function(){startQuiz(missed.slice());};
+  $("again").onclick=function(){startQuiz();};
+}
+startQuiz();
+
+var X2=[
+ ["Aluminium has proton number 13. Write its electronic structure.",1,"2,8,3"],
+ ["How many outer-shell electrons does a Group 2 atom have?",1,"Two"],
+ ["Explain why the modern atomic model may change in the future.",1,"New experimental evidence or improved technology may mean the model has to be revised."],
+ ["Down Group 1, melting point ______ and reactivity ______.",2,"Decreases [1]; increases [1]"],
+ ["Complete: potassium + water → ______ + ______",1,"Potassium hydroxide + hydrogen (both needed)"],
+ ["Mg²⁺ forms by ______ two electrons; O²⁻ forms by ______ two electrons.",2,"Losing [1]; gaining [1]"],
+ ["Why does an ionic bond not form between two iodide ions?",1,"Both ions are negatively charged, so they repel each other."],
+ ["Describe what is meant by a covalent bond.",2,"A pair of electrons [1] shared between two atoms [1]"],
+ ["Name the structures: water ______; graphite ______.",2,"Simple molecular [1]; giant covalent [1]"],
+ ["Explain why a lot of energy is needed to separate graphite into individual atoms.",2,"Many strong covalent bonds [1] need a large amount of energy to break [1]"],
+ ["State iodine’s physical state at room temperature.",1,"Solid"]
+];
+var X5=[
+ ["Complete: magnesium + zinc sulfate → ______ + ______",2,"Magnesium sulfate [1] + zinc [1]"],
+ ["Name the type of reaction in the question above.",1,"Displacement"],
+ ["Copper does not react with zinc sulfate solution. Explain why.",1,"Copper is less reactive than zinc, so it cannot displace it."],
+ ["Name the acid used to prepare zinc chloride.",1,"Hydrochloric acid"],
+ ["Name the gas formed when copper carbonate reacts with an acid.",1,"Carbon dioxide"],
+ ["Name the process for removing excess insoluble solid.",1,"Filtration"],
+ ["Describe two stages for obtaining crystals from the salt solution.",2,"Gently heat to evaporate some water and concentrate the solution [1]; leave it to cool so crystals form [1]"],
+ ["A sealed flask and its contents weigh 104 g before a reaction. Predict the mass afterwards.",1,"104 g"],
+ ["Explain your answer to the question above in terms of atoms.",1,"Atoms are not created or destroyed; they are only rearranged."],
+ ["An open flask loses mass during an acid and carbonate reaction. Explain why.",1,"Carbon dioxide gas escapes from the flask."],
+ ["Name the law that states energy cannot be created or destroyed.",1,"The law of conservation of energy"],
+ ["What should be measured to compare the sizes of the energy changes in two reaction mixtures?",1,"The temperature change (start to the highest or lowest temperature)"]
+];
+function xq(box,list){list.forEach(function(x,i){var d=document.createElement("div");d.className="xq";
+  d.innerHTML='<div class="qq">'+(i+1)+'. '+esc(x[0])+' <span class="mk">['+x[1]+']</span></div><button class="reveal">Show mark scheme</button><div class="ans">'+esc(x[2])+'</div>';
+  var b=d.querySelector(".reveal"),a=d.querySelector(".ans");
+  b.onclick=function(){a.classList.toggle("show");b.textContent=a.classList.contains("show")?"Hide mark scheme":"Show mark scheme";};
+  box.appendChild(d);});}
+xq($("x2"),X2);xq($("x5"),X5);
+document.querySelectorAll("nav.tabs a").forEach(function(a){a.addEventListener("click",function(e){var t=document.getElementById(a.getAttribute("href").slice(1));if(t){e.preventDefault();t.scrollIntoView({behavior:"smooth",block:"start"});}});});
+var h=(location.hash||"").slice(1);if(h&&/^[A-Za-z0-9_~.-]+$/.test(h)){var t0=document.getElementById(h);if(t0)setTimeout(function(){t0.scrollIntoView({block:"start"});},50);}
+})();
+</script>
+</body>
+</html>
